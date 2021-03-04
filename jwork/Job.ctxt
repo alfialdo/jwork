@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=Job
+comment1.params=
+comment1.target=Job()
+comment2.params=
+comment2.target=int\ getId()
+comment3.params=
+comment3.target=int\ getFee()
+comment4.params=
+comment4.target=java.lang.String\ getName()
+comment5.params=
+comment5.target=java.lang.String\ getCategory()
+comment6.params=id
+comment6.target=void\ setId(int)
+comment7.params=fee
+comment7.target=void\ setFee(int)
+comment8.params=name
+comment8.target=void\ setName(java.lang.String)
+comment9.params=category
+comment9.target=void\ setCategory(java.lang.String)
+numComments=10
