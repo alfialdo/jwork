@@ -1,13 +1,18 @@
 #BlueJ class context
 comment0.target=DatabaseJob
+comment0.text=\r\n\ Class\ untuk\ menyimpan\ data\ terkait\ job\ /\ pekerjaan\r\n\ @author\ Muhammad\ ALfi\ A\r\n\ @version\ Modul\ 2\ -\ 18\ March\ 2021\r\n
 comment1.params=listJob
 comment1.target=DatabaseJob(java.lang.String[])
 comment2.params=
 comment2.target=java.lang.String[]\ getListJob()
+comment2.text=\ \r\n\ Getter\ untuk\ attribute\ listJob\r\n\ @return\ String[]\r\n
 comment3.params=job
 comment3.target=java.lang.Boolean\ addJob(Job)
+comment3.text=\ \r\n\ Method\ untuk\ menambahkan\ data\ job\r\n\ @param\ job\r\n\ @return\ Boolean\r\n
 comment4.params=job
 comment4.target=java.lang.Boolean\ removeJob(Job)
+comment4.text=\ \r\n\ Method\ untuk\ menghapus\ data\ job\r\n\ @param\ job\r\n\ @return\ Boolean\r\n
 comment5.params=
 comment5.target=Job\ getJob()
+comment5.text=\ \r\n\ Getter\ untuk\ attribute\ job\r\n\ @return\ Job\r\n
 numComments=6
