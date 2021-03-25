@@ -18,7 +18,7 @@ public class Location {
      * @return String
      */
     public String getProvince() {
-        return this.province;
+        return province;
     }
 
     
@@ -36,7 +36,7 @@ public class Location {
      * @return String
      */
     public String getCity() {
-        return this.city;
+        return city;
     }
 
     
@@ -54,7 +54,7 @@ public class Location {
      * @return String
      */
     public String getDescription() {
-        return this.description;
+        return description;
     }
 
     
@@ -70,6 +70,9 @@ public class Location {
      * Method untuk print data
      */
     public void printData (){
-        System.out.println("Provinsi : " + getProvince());
+        System.out.println("====Location====");
+        System.out.println("Province : " + getProvince());
+        System.out.println("City : " + getCity());
+        System.out.println("Description : " + getDescription());
     }
 }

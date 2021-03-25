@@ -25,7 +25,7 @@ public class Invoice
      * @return int
      */
     public int getId() {
-        return this.id;
+        return id;
     }
 
     
@@ -43,7 +43,7 @@ public class Invoice
      * @return int
      */
     public int getIdJob() {
-        return this.idJob;
+        return idJob;
     }
 
     
@@ -61,7 +61,7 @@ public class Invoice
      * @return int
      */
     public int getTotalFee() {
-        return this.totalFee;
+        return totalFee;
     }
 
     
@@ -79,7 +79,7 @@ public class Invoice
      * @return String
      */
     public String getDate() {
-        return this.date;
+        return date;
     }
 
     
@@ -97,7 +97,7 @@ public class Invoice
      * @return Jobseeker
      */
     public Jobseeker getJobseeker() {
-        return this.jobseeker;
+        return jobseeker;
     }
 
     

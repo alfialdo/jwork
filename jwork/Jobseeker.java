@@ -22,7 +22,7 @@ public class Jobseeker
      * @return int
      */
     public int getId() {
-        return this.id;
+        return id;
     }
 
     
@@ -40,7 +40,7 @@ public class Jobseeker
      * @return String
      */
     public String getName() {
-        return this.name;
+        return name;
     }
 
     
@@ -58,7 +58,7 @@ public class Jobseeker
      * @return String
      */
     public String getEmail() {
-        return this.email;
+        return email;
     }
 
     
@@ -76,7 +76,7 @@ public class Jobseeker
      * @return String
      */
     public String getPassword() {
-        return this.password;
+        return password;
     }
 
     
@@ -94,7 +94,7 @@ public class Jobseeker
      * @return String
      */
     public String getJoinDate() {
-        return this.joinDate;
+        return joinDate;
     }
 
     
@@ -110,7 +110,11 @@ public class Jobseeker
      * Method untuk print data
      */
     public void printData (){
-        System.out.println("Nama : " + getName());
+        System.out.println("====Job Seeker====");
+        System.out.println("ID : " + getId());
+        System.out.println("Name : " + getName());
+        System.out.println("Email : " + getEmail());
+        System.out.println("Password : " + getJoinDate());
     }
 
 }

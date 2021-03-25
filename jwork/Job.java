@@ -7,10 +7,11 @@
 public class Job
 {
     private int id, fee;
-    private String name, category;
+    private String name;
     private Recruiter recuiter;
+    private JobCategory category;
 
-    public Job(int id, int fee, String name, String category, Recruiter recuiter) {
+    public Job(int id, int fee, String name, JobCategory category, Recruiter recuiter) {
         this.id = id;
         this.fee = fee;
         this.name = name;
@@ -24,7 +25,7 @@ public class Job
      * @return int
      */
     public int getId() {
-        return this.id;
+        return id;
     }
 
     
@@ -42,7 +43,7 @@ public class Job
      * @return int
      */
     public int getFee() {
-        return this.fee;
+        return fee;
     }
 
     
@@ -60,7 +61,7 @@ public class Job
      * @return String
      */
     public String getName() {
-        return this.name;
+        return name;
     }
 
     
@@ -77,8 +78,8 @@ public class Job
      * Getter untuk attribute category
      * @return String
      */
-    public String getCategory() {
-        return this.category;
+    public JobCategory getCategory() {
+        return category;
     }
 
     
@@ -86,7 +87,7 @@ public class Job
      * Setter untuk attribute category
      * @param category
      */
-    public void setCategory(String category) {
+    public void setCategory(JobCategory category) {
         this.category = category;
     }
 
@@ -96,7 +97,7 @@ public class Job
      * @return Recruiter
      */
     public Recruiter getRecuiter() {
-        return this.recuiter;
+        return recuiter;
     }
 
     
@@ -112,7 +113,13 @@ public class Job
      * Method untuk print data
      */
     public void printData (){
-        System.out.println("Nama Pekerjaan : " + getName());
+        System.out.println("====Job====");
+        System.out.println("ID : " + getId());
+        System.out.println("Name : " + getName());
+        System.out.println("Recruiter : " + getRecuiter().getName());
+        System.out.println("City : " + recuiter.getLocation().getCity());
+        System.out.println("Fee : " + getFee());
+        System.out.println("Category : " + getCategory());
     }
 
 }

@@ -24,7 +24,7 @@ public class Recruiter
      * @return int
      */
     public int getId() {
-        return this.id;
+        return id;
     }
 
     
@@ -42,7 +42,7 @@ public class Recruiter
      * @return String
      */
     public String getName() {
-        return this.name;
+        return name;
     }
 
     
@@ -60,7 +60,7 @@ public class Recruiter
      * @return String
      */
     public String getEmail() {
-        return this.email;
+        return email;
     }
 
     
@@ -78,7 +78,7 @@ public class Recruiter
      * @return String
      */
     public String getPhoneNumber() {
-        return this.phoneNumber;
+        return phoneNumber;
     }
 
     
@@ -96,7 +96,7 @@ public class Recruiter
      * @return Location
      */
     public Location getLocation() {
-        return this.location;
+        return location;
     }
 
     
@@ -112,7 +112,12 @@ public class Recruiter
      * Method untuk print data
      */
     public void printData (){
-        System.out.println("Nama Recruiter: " + getName());
+        System.out.println("====Recruiter====");
+        System.out.println("ID : " + getId());
+        System.out.println("Name : " + getName());
+        System.out.println("Email : " + getEmail());
+        System.out.println("Phone : " + getPhoneNumber());
+        System.out.println("City : " + location.getCity());
     }
 
 }

@@ -7,16 +7,11 @@
 public class DatabaseJob {
     private String[] listJob;
     
-    public DatabaseJob(String[] listJob) {
-        this.listJob = listJob;
-    }
-
-    
     /** 
      * Getter untuk attribute listJob
      * @return String[]
      */
-    public String[] getListJob() {
+    public static String[] getListJob() {
         return null;
     }
     
@@ -36,7 +31,7 @@ public class DatabaseJob {
      * @param job
      * @return Boolean
      */
-    public Boolean removeJob(Job job) {
+    public static Boolean removeJob(Job job) {
         return false;
     }
 
@@ -45,7 +40,7 @@ public class DatabaseJob {
      * Getter untuk attribute job
      * @return Job
      */
-    public Job getJob(){
+    public static Job getJob(){
         return null;
     }
 
