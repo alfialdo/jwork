@@ -8,15 +8,15 @@ public class Job
 {
     private int id, fee;
     private String name;
-    private Recruiter recuiter;
+    private Recruiter recruiter;
     private JobCategory category;
 
-    public Job(int id, int fee, String name, JobCategory category, Recruiter recuiter) {
+    public Job(int id, int fee, String name, JobCategory category, Recruiter recruiter) {
         this.id = id;
         this.fee = fee;
         this.name = name;
         this.category = category;
-        this.recuiter = recuiter;
+        this.recruiter = recruiter;
     }
 
     
@@ -97,7 +97,7 @@ public class Job
      * @return Recruiter
      */
     public Recruiter getRecuiter() {
-        return recuiter;
+        return recruiter;
     }
 
     
@@ -106,7 +106,7 @@ public class Job
      * @param recuiter
      */
     public void setRecuiter(Recruiter recuiter) {
-        this.recuiter = recuiter;
+        this.recruiter = recuiter;
     }
 
     /**
@@ -114,12 +114,12 @@ public class Job
      */
     public void printData (){
         System.out.println("====Job====");
-        System.out.println("ID : " + getId());
-        System.out.println("Name : " + getName());
-        System.out.println("Recruiter : " + getRecuiter().getName());
-        System.out.println("City : " + recuiter.getLocation().getCity());
-        System.out.println("Fee : " + getFee());
-        System.out.println("Category : " + getCategory());
+        System.out.println("ID : " + id);
+        System.out.println("Name : " + name);
+        System.out.println("Recruiter : " + recruiter.getName());
+        System.out.println("City : " + recruiter.getLocation().getCity());
+        System.out.println("Fee : " + fee);
+        System.out.println("Category : " + category);
     }
 
 }

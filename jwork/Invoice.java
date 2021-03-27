@@ -3,20 +3,25 @@
  * Class untuk bukti invoice
  * @author Muhammad Alfi A
  * @version Modul 2 - 18 March 2021
+
  */
 public class Invoice
 {
     private int id, idJob, totalFee;
     private String date;
     private Jobseeker jobseeker;
+    private PaymentType paymentType;
+    private InvoiceStatus status;
 
 
-    public Invoice(int id, int idJob, int totalFee, String date, Jobseeker jobseeker) {
+    public Invoice(int id, int idJob, int totalFee, String date, Jobseeker jobseeker, PaymentType paymentType, InvoiceStatus status) {
         this.id = id;
         this.idJob = idJob;
         this.totalFee = totalFee;
         this.date = date;
         this.jobseeker = jobseeker;
+        this.paymentType = paymentType;
+        this.status = status;
     }
 
     
@@ -110,10 +115,32 @@ public class Invoice
         this.jobseeker = jobseeker;
     }
 
+    public PaymentType getPaymentType() {
+        return paymentType;
+    }
+
+    public void setPaymentType(PaymentType paymentType) {
+        this.paymentType = paymentType;
+    }
+
+    public InvoiceStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(InvoiceStatus status) {
+        this.status = status;
+    }
+
     /**
      * Method untuk print data
      */
     public void printData(){
-        System.out.println("Jumlah Harga : " + getTotalFee());
+        System.out.println("ID : " + id);
+        System.out.println("ID Job : " + idJob);
+        System.out.println("Date : " + date);
+        System.out.println("Seeker : " + jobseeker.getName());
+        System.out.println("Fee : " + totalFee);
+        System.out.println("Payment Type : " + paymentType);
+        System.out.println("Status : " + status);
     }
 }

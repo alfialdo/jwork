@@ -111,10 +111,9 @@ public class Jobseeker
      */
     public void printData (){
         System.out.println("====Job Seeker====");
-        System.out.println("ID : " + getId());
-        System.out.println("Name : " + getName());
-        System.out.println("Email : " + getEmail());
-        System.out.println("Password : " + getJoinDate());
+        System.out.println("ID : " + id);
+        System.out.println("Name : " + name);
+        System.out.println("Email : " + email);
+        System.out.println("Password : " + joinDate);
     }
-
 }

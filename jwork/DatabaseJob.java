@@ -5,17 +5,8 @@
  * @version Modul 2 - 18 March 2021
  */
 public class DatabaseJob {
-    private String[] listJob;
-    
-    /** 
-     * Getter untuk attribute listJob
-     * @return String[]
-     */
-    public static String[] getListJob() {
-        return null;
-    }
-    
-    
+    private static String[] listJob;
+        
     /** 
      * Method untuk menambahkan data job
      * @param job
@@ -44,4 +35,12 @@ public class DatabaseJob {
         return null;
     }
 
+
+    /** 
+     * Getter untuk attribute listJob
+     * @return String[]
+     */
+    public static String[] getListJob() {
+        return listJob;
+    }
 }

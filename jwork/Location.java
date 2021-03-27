@@ -71,8 +71,8 @@ public class Location {
      */
     public void printData (){
         System.out.println("====Location====");
-        System.out.println("Province : " + getProvince());
-        System.out.println("City : " + getCity());
-        System.out.println("Description : " + getDescription());
+        System.out.println("Province : " + province);
+        System.out.println("City : " + city);
+        System.out.println("Description : " + description);
     }
 }
