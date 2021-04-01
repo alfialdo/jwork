@@ -5,26 +5,25 @@
  * @version Modul 2 - 18 March 2021
 
  */
-public class Invoice
+public abstract class Invoice
 {
-    private int id, idJob, totalFee;
+    private int id;
+    protected int totalFee;
     private String date;
     private Jobseeker jobseeker;
-    private PaymentType paymentType;
-    private InvoiceStatus status;
+    private Job job;
+    private InvoiceStatus invoiceStatus;
 
 
-    public Invoice(int id, int idJob, int totalFee, String date, Jobseeker jobseeker, PaymentType paymentType, InvoiceStatus status) {
+    public Invoice(int id, Job job, int totalFee, String date, Jobseeker jobseeker, InvoiceStatus invoiceStatus) {
         this.id = id;
-        this.idJob = idJob;
+        this.job = job;
         this.totalFee = totalFee;
         this.date = date;
         this.jobseeker = jobseeker;
-        this.paymentType = paymentType;
-        this.status = status;
+        this.invoiceStatus = invoiceStatus;
     }
 
-    
     /** 
      * Getter untuk attribute id
      * @return int
@@ -45,10 +44,10 @@ public class Invoice
     
     /** 
      * Getter untuk attribute idJob
-     * @return int
+     * @return Job
      */
-    public int getIdJob() {
-        return idJob;
+    public Job getJob() {
+        return job;
     }
 
     
@@ -56,8 +55,8 @@ public class Invoice
      * Setter untuk attribute idJob
      * @param idJob
      */
-    public void setIdJob(int idJob) {
-        this.idJob = idJob;
+    public void setJob(Job job) {
+        this.job = job;
     }
 
     
@@ -74,10 +73,7 @@ public class Invoice
      * Setter untuk attribute totalFee
      * @param totalFee
      */
-    public void setTotalFee(int totalFee) {
-        this.totalFee = totalFee;
-    }
-
+    public abstract void setTotalFee(int totalFee);
     
     /** 
      * Getter untuk attribute date
@@ -115,32 +111,18 @@ public class Invoice
         this.jobseeker = jobseeker;
     }
 
-    public PaymentType getPaymentType() {
-        return paymentType;
+    public abstract PaymentType getPaymentType();
+
+    public InvoiceStatus getInvoiceStatus() {
+        return invoiceStatus;
     }
 
-    public void setPaymentType(PaymentType paymentType) {
-        this.paymentType = paymentType;
-    }
-
-    public InvoiceStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(InvoiceStatus status) {
-        this.status = status;
+    public void setInvoiceStatus(InvoiceStatus invoiceStatus) {
+        this.invoiceStatus = invoiceStatus;
     }
 
     /**
      * Method untuk print data
      */
-    public void printData(){
-        System.out.println("ID : " + id);
-        System.out.println("ID Job : " + idJob);
-        System.out.println("Date : " + date);
-        System.out.println("Seeker : " + jobseeker.getName());
-        System.out.println("Fee : " + totalFee);
-        System.out.println("Payment Type : " + paymentType);
-        System.out.println("Status : " + status);
-    }
+    public abstract void printData();
 }

@@ -1,15 +1,16 @@
 public enum InvoiceStatus {
-    OnGoing,
-    Finished,
-    Cancelled;
+    Ongoing("Ongoing"),
+    Finished("Finished"),
+    Cancelled("Cancelled");
 
+    private String invoiceStatus;
+
+    InvoiceStatus (String invoiceStatus) {
+        this.invoiceStatus = invoiceStatus;
+    }
+   
     @Override
     public String toString() {
-        switch(this) {
-            case OnGoing : return "Ongoing";
-            case Finished : return "Finished";
-            case Cancelled : return "Cancelled";
-            default : throw new IllegalArgumentException();
-        }
+        return this.invoiceStatus.toString();
     }
 }

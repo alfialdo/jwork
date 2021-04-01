@@ -1,0 +1,27 @@
+#BlueJ class context
+comment0.target=Bonus
+comment1.params=id\ extraFee\ minTotalFee\ referralCode\ active
+comment1.target=Bonus(int,\ int,\ int,\ java.lang.String,\ java.lang.Boolean)
+comment10.params=
+comment10.target=java.lang.Boolean\ getActive()
+comment11.params=active
+comment11.target=void\ setActive(java.lang.Boolean)
+comment12.params=
+comment12.target=void\ printData()
+comment2.params=
+comment2.target=int\ getId()
+comment3.params=id
+comment3.target=void\ setId(int)
+comment4.params=
+comment4.target=int\ getExtraFee()
+comment5.params=extraFee
+comment5.target=void\ setExtraFee(int)
+comment6.params=
+comment6.target=int\ getMinTotalFee()
+comment7.params=minTotalFee
+comment7.target=void\ setMinTotalFee(int)
+comment8.params=
+comment8.target=java.lang.String\ getReferralCode()
+comment9.params=referralCode
+comment9.target=void\ setReferralCode(java.lang.String)
+numComments=13

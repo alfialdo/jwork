@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=DatabaseBonus
+comment1.params=bonus
+comment1.target=java.lang.Boolean\ addBonus(Bonus)
+comment2.params=bonus
+comment2.target=java.lang.Boolean\ removeBonus(Bonus)
+comment3.params=
+comment3.target=Bonus\ getBonus()
+comment4.params=
+comment4.target=java.lang.String[]\ getListBonus()
+numComments=5
