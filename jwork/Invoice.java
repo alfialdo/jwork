@@ -2,7 +2,7 @@
 /**
  * Class untuk bukti invoice
  * @author Muhammad Alfi A
- * @version Modul 2 - 18 March 2021
+ * @version Modul 4 - 30 March 2021
 
  */
 public abstract class Invoice
@@ -15,10 +15,9 @@ public abstract class Invoice
     private InvoiceStatus invoiceStatus;
 
 
-    public Invoice(int id, Job job, int totalFee, String date, Jobseeker jobseeker, InvoiceStatus invoiceStatus) {
+    public Invoice(int id, Job job, String date, Jobseeker jobseeker, InvoiceStatus invoiceStatus) {
         this.id = id;
         this.job = job;
-        this.totalFee = totalFee;
         this.date = date;
         this.jobseeker = jobseeker;
         this.invoiceStatus = invoiceStatus;
@@ -73,7 +72,7 @@ public abstract class Invoice
      * Setter untuk attribute totalFee
      * @param totalFee
      */
-    public abstract void setTotalFee(int totalFee);
+    public abstract void setTotalFee();
     
     /** 
      * Getter untuk attribute date
@@ -111,12 +110,25 @@ public abstract class Invoice
         this.jobseeker = jobseeker;
     }
 
+    
+    /** 
+     * @param getInvoiceStatus(
+     * @return PaymentType
+     */
     public abstract PaymentType getPaymentType();
 
+    
+    /** 
+     * @return InvoiceStatus
+     */
     public InvoiceStatus getInvoiceStatus() {
         return invoiceStatus;
     }
 
+    
+    /** 
+     * @param invoiceStatus
+     */
     public void setInvoiceStatus(InvoiceStatus invoiceStatus) {
         this.invoiceStatus = invoiceStatus;
     }

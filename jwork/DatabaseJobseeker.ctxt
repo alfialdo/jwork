@@ -1,5 +1,6 @@
 #BlueJ class context
 comment0.target=DatabaseJobseeker
+comment0.text=\r\n\ Class\ untuk\ Database\ Jobseeker\r\n\ @author\ Muhammad\ Alfi\ A\r\n\ @version\ Modul\ 4\ -\ 30\ March\ 2021\r\n
 comment1.params=jobseeker
 comment1.target=java.lang.Boolean\ addJobseeker(Jobseeker)
 comment1.text=\ \r\n\ @param\ jobseeker\r\n\ @return\ Boolean\r\n

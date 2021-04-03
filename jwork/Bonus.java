@@ -1,3 +1,9 @@
+/**
+ * Class untuk bonus fee
+ * @author Muhammad Alfi A
+ * @version Modul 4 - 30 March 2021
+
+ */
 public class Bonus {
     private int id, extraFee, minTotalFee;
     private String referralCode;
@@ -11,43 +17,82 @@ public class Bonus {
         this.active = active;
     }
 
-
+    
+    /** 
+     * @return int
+     */
     public int getId() {
         return id;
     }
 
+    
+    /** 
+     * @param id
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    
+    /** 
+     * @return int
+     */
     public int getExtraFee() {
         return extraFee;
     }
 
+    
+    /** 
+     * @param extraFee
+     */
     public void setExtraFee(int extraFee) {
         this.extraFee = extraFee;
     }
 
+    
+    /** 
+     * @return int
+     */
     public int getMinTotalFee() {
         return minTotalFee;
     }
 
+    
+    /** 
+     * @param minTotalFee
+     */
     public void setMinTotalFee(int minTotalFee) {
         this.minTotalFee = minTotalFee;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getReferralCode() {
         return referralCode;
     }
 
+    
+    /** 
+     * @param referralCode
+     */
     public void setReferralCode(String referralCode) {
         this.referralCode = referralCode;
     }
 
+    
+    /** 
+     * @return Boolean
+     */
     public Boolean getActive() {
         return active;
     }
 
+    
+    /** 
+     * @param active
+     */
     public void setActive(Boolean active) {
         this.active = active;
     }

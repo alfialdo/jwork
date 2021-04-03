@@ -1,4 +1,9 @@
  
+ /**
+ * Class untuk deskripsi job / pekerjaan
+ * @author Muhammad Alfi A
+ * @version Modul 4 - 30 March 2021
+ */
  public enum JobCategory {
     WebDeveloper("Web Developer"),
     FrontEnd("Front End"),

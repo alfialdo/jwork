@@ -1,4 +1,8 @@
-
+/**
+ * Class untuk Database Jobseeker
+ * @author Muhammad Alfi A
+ * @version Modul 4 - 30 March 2021
+ */
 public class DatabaseJobseeker {
     private static String[] listJobseeker;
 

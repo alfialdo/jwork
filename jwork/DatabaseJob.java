@@ -2,7 +2,7 @@
 /**
  * Class untuk menyimpan data terkait job / pekerjaan
  * @author Muhammad ALfi A
- * @version Modul 2 - 18 March 2021
+ * @version Modul 4 - 30 March 2021
  */
 public class DatabaseJob {
     private static String[] listJob;

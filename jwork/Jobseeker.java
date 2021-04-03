@@ -2,7 +2,7 @@
 /**
  * Class untuk mencari job / pekerjaan
  * @author Muhammad Alfi A
- * @version Modul 2 - 18 March 2021
+ * @version Modul 4 - 30 March 2021
  */
 public class Jobseeker
 {
