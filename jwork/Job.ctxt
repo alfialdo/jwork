@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Job
-comment0.text=\r\n\ Class\ untuk\ deskripsi\ job\ /\ pekerjaan\r\n\ @author\ Muhammad\ Alfi\ A\r\n\ @version\ Modul\ 2\ -\ 18\ March\ 2021\r\n
+comment0.text=\r\n\ Class\ untuk\ deskripsi\ job\ /\ pekerjaan\r\n\ @author\ Muhammad\ Alfi\ A\r\n\ @version\ Modul\ 4\ -\ 30\ March\ 2021\r\n
 comment1.params=id\ fee\ name\ category\ recruiter
 comment1.target=Job(int,\ int,\ java.lang.String,\ JobCategory,\ Recruiter)
 comment10.params=
@@ -10,7 +10,7 @@ comment11.params=recuiter
 comment11.target=void\ setRecuiter(Recruiter)
 comment11.text=\ \r\n\ Setter\ untuk\ object\ recruiter\r\n\ @param\ recuiter\r\n
 comment12.params=
-comment12.target=void\ printData()
+comment12.target=java.lang.String\ toString()
 comment12.text=\r\n\ Method\ untuk\ print\ data\r\n
 comment2.params=
 comment2.target=int\ getId()

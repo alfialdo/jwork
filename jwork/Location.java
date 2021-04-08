@@ -75,4 +75,10 @@ public class Location {
         System.out.println("City : " + city);
         System.out.println("Description : " + description);
     }
+
+    public String toString (){
+        return "Province= " + province + 
+        "\nCity= " + city + 
+        "\nDescription " + description;
+    }
 }

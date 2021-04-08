@@ -120,4 +120,12 @@ public class Recruiter
         System.out.println("City : " + location.getCity());
     }
 
+    public String toString (){
+        return "Id= " + id + 
+        "\nName= " + name + 
+        "\nEmail= " + email + 
+        "\nPhoneNumber= " + phoneNumber + 
+        "\nCity= " + location.getCity();
+    }
+
 }

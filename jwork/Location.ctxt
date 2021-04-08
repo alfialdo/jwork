@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Location
-comment0.text=\r\n\ Class\ untuk\ data\ location\r\n\ @author\ Muhammad\ Alfi\ A\r\n\ @version\ Modul\ 2\ -\ 18\ March\ 2021\r\n
+comment0.text=\r\n\ Class\ untuk\ data\ location\r\n\ @author\ Muhammad\ Alfi\ A\r\n\ @version\ Modul\ 4\ -\ 30\ March\ 2021\r\n
 comment1.params=province\ city\ description
 comment1.target=Location(java.lang.String,\ java.lang.String,\ java.lang.String)
 comment2.params=
@@ -24,4 +24,6 @@ comment7.text=\ \r\n\ Setter\ untuk\ attribute\ description\r\n\ @param\ descrip
 comment8.params=
 comment8.target=void\ printData()
 comment8.text=\r\n\ Method\ untuk\ print\ data\r\n
-numComments=9
+comment9.params=
+comment9.target=java.lang.String\ toString()
+numComments=10

@@ -1,5 +1,6 @@
 #BlueJ class context
 comment0.target=PaymentType
+comment0.text=\r\n\ Enum\ untuk\ tipe\ payment\r\n\ @author\ Muhammad\ Alfi\ A\r\n\ @version\ Modul\ 4\ -\ 30\ March\ 2021\r\n
 comment1.params=payment
 comment1.target=PaymentType(java.lang.String)
 comment2.params=

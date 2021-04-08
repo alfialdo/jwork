@@ -1,22 +1,49 @@
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern; 
+import java.util.GregorianCalendar;
 
 /**
  * Class untuk mencari job / pekerjaan
  * @author Muhammad Alfi A
  * @version Modul 4 - 30 March 2021
  */
+
 public class Jobseeker
 {
     private int id;
-    private String name, email, password, joinDate;
+    private String name, email, password;
+    public Calendar joinDate;
 
-    public Jobseeker(int id, String name, String email, String password, String joinDate) {
+    public Jobseeker(int id, String name, String email, String password, Calendar joinDate) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
         this.joinDate = joinDate;
+        setEmail(email);
+        setPassword(password);
     }
     
+    public Jobseeker(int id, String name, String email, String password, int year, int month, int dayOfMonth) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.joinDate = new GregorianCalendar(year, month, dayOfMonth);
+        setEmail(email);
+        setPassword(password);
+    }
+
+    public Jobseeker(int id, String name, String email, String password) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        setEmail(email);
+        setPassword(password);
+    }
     /** 
      * Getter untuk attribute id
      * @return int
@@ -67,7 +94,18 @@ public class Jobseeker
      * @param email
      */
     public void setEmail(String email) {
-        this.email = email;
+        String pattern = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[A-Za-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";
+        Pattern r = Pattern.compile(pattern);
+
+        Matcher m = r.matcher(email);
+        if (m.find()) {
+            this.email = email;
+            // System.out.println("Email Diterima!");
+        }
+        else {
+            this.email = "";
+            // System.out.println("Email Tidak Sesuai!");
+        }
     }
 
     
@@ -85,7 +123,18 @@ public class Jobseeker
      * @param password
      */
     public void setPassword(String password) {
-        this.password = password;
+        String pattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{6,}$";
+        Pattern r = Pattern.compile(pattern);
+
+        Matcher m = r.matcher(password);
+        if (m.find()) {
+            this.password = password;
+            // System.out.println("Password Diterima!");
+        }
+        else {
+            this.password = "";
+            // System.out.println("Password Tidak Sesuai!");
+        }
     }
 
     
@@ -93,7 +142,7 @@ public class Jobseeker
      * Getter untuk attribute joinDate
      * @return String
      */
-    public String getJoinDate() {
+    public Calendar getJoinDate() {
         return joinDate;
     }
 
@@ -102,18 +151,24 @@ public class Jobseeker
      * Setter untuk attribute joinDate
      * @param joinDate
      */
-    public void setJoinDate(String joinDate) {
+    public void setJoinDate(Calendar joinDate) {
         this.joinDate = joinDate;
+    }
+
+    public void setJoinDate(int year, int month, int dayOfMonth) {
+        this.joinDate = new GregorianCalendar(year, month, dayOfMonth);
     }
     
     /**
      * Method untuk print data
      */
-    public void printData (){
-        System.out.println("====Job Seeker====");
-        System.out.println("ID : " + id);
-        System.out.println("Name : " + name);
-        System.out.println("Email : " + email);
-        System.out.println("Password : " + joinDate);
+    public String toString (){
+        SimpleDateFormat dateFormat = new SimpleDateFormat ("dd MMMM yyyy");
+        dateFormat.setTimeZone(joinDate.getTimeZone());
+        return "\nId= " + id + 
+        "\nNama= " + name + 
+        "\nEmail= " + email + 
+        "\nPassword= " + password +
+        "\nJoin Date= " + dateFormat.format(joinDate.getTime());
     }
 }
