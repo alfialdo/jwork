@@ -1,3 +1,5 @@
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /**
  * Class untuk bukti invoice
@@ -9,16 +11,15 @@ public abstract class Invoice
 {
     private int id;
     protected int totalFee;
-    private String date;
+    private Calendar date;
     private Jobseeker jobseeker;
     private Job job;
     private InvoiceStatus invoiceStatus;
 
 
-    public Invoice(int id, Job job, String date, Jobseeker jobseeker, InvoiceStatus invoiceStatus) {
+    public Invoice(int id, Job job, Jobseeker jobseeker, InvoiceStatus invoiceStatus) {
         this.id = id;
         this.job = job;
-        this.date = date;
         this.jobseeker = jobseeker;
         this.invoiceStatus = invoiceStatus;
     }
@@ -78,7 +79,7 @@ public abstract class Invoice
      * Getter untuk attribute date
      * @return String
      */
-    public String getDate() {
+    public Calendar getDate() {
         return date;
     }
 
@@ -87,8 +88,12 @@ public abstract class Invoice
      * Setter untuk attribute date
      * @param date
      */
-    public void setDate(String date) {
+    public void setDate(Calendar date) {
         this.date = date;
+    }
+
+    public void setDate(int year, int month, int dayOfMonth) {
+        this.date = new GregorianCalendar(year, month, dayOfMonth);
     }
 
     
@@ -136,5 +141,5 @@ public abstract class Invoice
     /**
      * Method untuk print data
      */
-    public abstract void printData();
+    public abstract String toString();
 }

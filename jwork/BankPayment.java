@@ -1,13 +1,15 @@
+import java.text.SimpleDateFormat;
+
 public class BankPayment extends Invoice{
     private static PaymentType PAYMENT_TYPE = PaymentType.BankPayment;
     private int adminFee = 0;
 
-    public BankPayment(int id, Job job, String date, Jobseeker jobseeker, InvoiceStatus invoiceStatus) {
-        super(id, job, date, jobseeker, invoiceStatus);
+    public BankPayment(int id, Job job, Jobseeker jobseeker, InvoiceStatus invoiceStatus) {
+        super(id, job, jobseeker, invoiceStatus);
     }
 
-    public BankPayment(int id, Job job, String date, Jobseeker jobseeker, InvoiceStatus invoiceStatus, int adminFee) {
-        super(id, job, date, jobseeker, invoiceStatus);
+    public BankPayment(int id, Job job, Jobseeker jobseeker, InvoiceStatus invoiceStatus, int adminFee) {
+        super(id, job, jobseeker, invoiceStatus);
         this.adminFee = adminFee;
     }
 
@@ -34,17 +36,16 @@ public class BankPayment extends Invoice{
         }
     }
 
-    @Override
-    public void printData() {
-        System.out.println("==========INVOICE==========");
-        System.out.println("ID : " + getId());
-        System.out.println("Job : " + getJob().getCategory());
-        System.out.println("Date : " + getDate());
-        System.out.println("Job Seeker : " + getJobseeker().getName());
-        System.out.println("Admin Fee : " + adminFee); 
-        System.out.println("Total Fee : " + super.totalFee); 
-        System.out.println("Status : " + getInvoiceStatus());
-        System.out.println("Payment Type : " + PAYMENT_TYPE);
-        
+    public String toString() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat ("dd MMMM yyyy");
+        dateFormat.setTimeZone(getDate().getTimeZone());
+        return "Id= " + getId() + 
+        "\nJob= " + getJob().getCategory() + 
+        "\nDate= " + dateFormat.format(getDate().getTime()) + 
+        "\nJob Seeker= " + getJobseeker().getName() + 
+        "\nAdmin Fee= " + adminFee + 
+        "\nTotal Fee= " + super.totalFee + 
+        "\nStatus= " + getInvoiceStatus()+ 
+        "\nPayment Type= " + PAYMENT_TYPE;
     }
 }
