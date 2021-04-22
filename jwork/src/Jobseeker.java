@@ -91,7 +91,7 @@ public class Jobseeker
      * Setter untuk attribute email
      */
     public void setEmail(String email) {
-        String pattern = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[A-Za-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";
+        String pattern = "(?!.*\\.{2,})(?!\\.)[0-9A-z.&*_~]+@(?!-)[0-9A-z&*_~.-]+";
         Pattern r = Pattern.compile(pattern);
 
         Matcher m = r.matcher(email);

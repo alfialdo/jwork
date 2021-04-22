@@ -1,4 +1,5 @@
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 /**
  * Class untuk ewallet payment - subclass dari Invoice
@@ -9,12 +10,12 @@ public class EwalletPayment extends Invoice {
     private static PaymentType PAYMENT_TYPE = PaymentType.EwalletPayment;
     private Bonus bonus;
 
-    public EwalletPayment(int id, Job job, Jobseeker jobseeker, InvoiceStatus invoiceStatus) {
-        super(id, job, jobseeker, invoiceStatus);
+    public EwalletPayment(int id, ArrayList<Job> jobs, Jobseeker jobseeker, InvoiceStatus invoiceStatus) {
+        super(id, jobs, jobseeker);
     }
 
-    public EwalletPayment(int id, Job job, Jobseeker jobseeker, InvoiceStatus invoiceStatus, Bonus bonus) {
-        super(id, job, jobseeker, invoiceStatus);
+    public EwalletPayment(int id, ArrayList<Job> jobs, Jobseeker jobseeker, InvoiceStatus invoiceStatus, Bonus bonus) {
+        super(id, jobs, jobseeker);
         this.bonus = bonus;
     }
     
@@ -44,11 +45,11 @@ public class EwalletPayment extends Invoice {
 
     public void setTotalFee() {
         if(bonus != null && bonus.getActive() && totalFee > bonus.getMinTotalFee()) {
-            super.totalFee = getJob().getFee() + bonus.getExtraFee();
+//            super.totalFee = getJob().getFee() + bonus.getExtraFee();
         }
         else {
             System.out.println(totalFee);
-            super.totalFee = getJob().getFee();
+//            super.totalFee = getJob().getFee();
         }
     }
     public String toString() {
@@ -56,7 +57,7 @@ public class EwalletPayment extends Invoice {
         dateFormat.setTimeZone(getDate().getTimeZone());
         if(bonus != null && bonus.getActive() && getTotalFee() > bonus.getMinTotalFee()) {
             return "Id= " + getId() + 
-            "\nJob= " + getJob().getCategory() + 
+//            "\nJob= " + getJob().getCategory() +
             "\nDate= " + dateFormat.format(getDate().getTime()) + 
             "\nJob Seeker= " + getJobseeker().getName() + 
             "\nTotal Fee= " + super.totalFee + 
@@ -66,7 +67,7 @@ public class EwalletPayment extends Invoice {
         }
         else {
             return "Id= " + getId() + 
-            "\nJob= " + getJob().getCategory() + 
+//            "\nJob= " + getJobs().getCategory() +
             "\nDate= " + dateFormat.format(getDate().getTime()) + 
             "\nJob Seeker= " + getJobseeker().getName() + 
             "\nTotal Fee= " + super.totalFee + 

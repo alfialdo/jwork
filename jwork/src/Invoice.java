@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -13,16 +14,16 @@ public abstract class Invoice
     protected int totalFee;
     private Calendar date;
     private Jobseeker jobseeker;
-    private Job job;
+    private ArrayList<Job> jobs;
     private InvoiceStatus invoiceStatus;
 
 
-    public Invoice(int id, Job job, Jobseeker jobseeker, InvoiceStatus invoiceStatus) {
+    public Invoice(int id, ArrayList<Job> jobs, Jobseeker jobseeker) {
         this.id = id;
-        this.job = job;
+        this.jobs = jobs;
         this.jobseeker = jobseeker;
-        this.invoiceStatus = invoiceStatus;
-        this.date = new GregorianCalendar();
+        this.invoiceStatus = InvoiceStatus.Ongoing;
+        this.date = Calendar.getInstance();
     }
 
     /** 
@@ -46,16 +47,16 @@ public abstract class Invoice
      * Getter untuk attribute idJob
      * @return Job
      */
-    public Job getJob() {
-        return job;
+    public ArrayList<Job> getJobs() {
+        return jobs;
     }
 
     
     /** 
      * Setter untuk attribute idJob
      */
-    public void setJob(Job job) {
-        this.job = job;
+    public void setJobs(ArrayList<Job> jobs) {
+        this.jobs = jobs;
     }
 
     

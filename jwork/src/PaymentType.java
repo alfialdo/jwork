@@ -16,6 +16,6 @@ public enum PaymentType {
    
     @Override
     public String toString() {
-        return this.payment.toString();
+        return this.payment;
     }
 }

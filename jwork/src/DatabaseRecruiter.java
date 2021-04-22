@@ -1,43 +1,53 @@
+import java.util.ArrayList;
+import java.util.Iterator;
+
 /**
- * Class untuk database recruiter
+ * Class untuk database bonus
  * @author Muhammad Alfi A
  * @version Modul 4 - 30 March 2021
 
  */
-public class DatabaseRecruiter {
-    private static String[] listRecruiter;
+public class DatabaseRecruiter{
+    private static ArrayList<Recruiter> RECRUITER_DATABASE = new ArrayList<>();
+    private static int lastId = 0;
 
-    
-    /**
-     * @return Boolean
-     */
-    public static Boolean addRecruiter(Recruiter recruiter) {
-        return false;
+    public static ArrayList<Recruiter> getRecruiterDatabase() {
+        return RECRUITER_DATABASE;
     }
 
-    
-    /**
-     * @return Boolean
-     */
-    public static Boolean removeRecruiter(Recruiter recruiter) {
-        return false;
+    public static int getLastId() {
+        return lastId;
     }
 
-    
-    /** 
-     * @return Recruiter
-     */
-    public static Recruiter getRecruiter() {
+    public static Recruiter getBonusById(int id) {
+        int i=0;
+        while(i < RECRUITER_DATABASE.size()) {
+            if (RECRUITER_DATABASE.get(i).getId() == id) {
+                return RECRUITER_DATABASE.get(i);
+            }
+            i++;
+        }
         return null;
     }
 
-    
-    /** 
-     * @return String[]
+    /**
+     * @return Boolean
      */
-    public static String[] getListRecruiter() {
-        return listRecruiter;
+    public static boolean addRecruiter(Recruiter recruiter) {
+        RECRUITER_DATABASE.add(recruiter);
+        lastId = RECRUITER_DATABASE.size()-1;
+        return true;
     }
-    
-    
+
+    public static boolean removeRecruiter(int id) {
+        int i=0;
+        while(i < RECRUITER_DATABASE.size()) {
+            if (RECRUITER_DATABASE.get(i).getId() == id) {
+                RECRUITER_DATABASE.remove(i);
+                return true;
+            }
+            i++;
+        }
+        return false;
+    }
 }
