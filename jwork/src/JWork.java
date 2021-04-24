@@ -32,7 +32,7 @@ public class JWork
         ArrayList<Job> jobs1 = new ArrayList<>();
         ArrayList<Job> jobs2 = new ArrayList<>();
 
-        DatabaseInvoice.addInvoice(new BankPayment(2, asad, jobseeker1, InvoiceStatus.Cancelled, 5000));
+//        DatabaseInvoice.addInvoice(new BankPayment(2, asad, jobseeker1, InvoiceStatus.Cancelled, 5000));
 
 
 //        Invoice invoice1 = new Invoice(1, job1.getId(), job1.getFee(), "27/3/2021", jobseeker1, InvoiceStatus.Finished);
