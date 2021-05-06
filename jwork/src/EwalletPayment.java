@@ -55,9 +55,13 @@ public class EwalletPayment extends Invoice {
     public String toString() {
         SimpleDateFormat dateFormat = new SimpleDateFormat ("dd MMMM yyyy");
         dateFormat.setTimeZone(getDate().getTimeZone());
+        String allJobs = null;
+        for (Job jobs : super.getJobs()) {
+            allJobs = allJobs + jobs.getName();
+        }
         if(bonus != null && bonus.getActive() && getTotalFee() > bonus.getMinTotalFee()) {
             return "Id= " + getId() + 
-//            "\nJob= " + getJob().getCategory() +
+            "\nJob= " + allJobs +
             "\nDate= " + dateFormat.format(getDate().getTime()) + 
             "\nJob Seeker= " + getJobseeker().getName() + 
             "\nTotal Fee= " + super.totalFee + 
@@ -67,7 +71,7 @@ public class EwalletPayment extends Invoice {
         }
         else {
             return "Id= " + getId() + 
-//            "\nJob= " + getJobs().getCategory() +
+            "\nJob= " + allJobs +
             "\nDate= " + dateFormat.format(getDate().getTime()) + 
             "\nJob Seeker= " + getJobseeker().getName() + 
             "\nTotal Fee= " + super.totalFee + 

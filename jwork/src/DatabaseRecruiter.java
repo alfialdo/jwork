@@ -19,7 +19,7 @@ public class DatabaseRecruiter{
         return lastId;
     }
 
-    public static Recruiter getBonusById(int id) {
+    public static Recruiter getRecruiterById(int id) throws RecruiterNotFoundException {
         int i=0;
         while(i < RECRUITER_DATABASE.size()) {
             if (RECRUITER_DATABASE.get(i).getId() == id) {
@@ -27,7 +27,7 @@ public class DatabaseRecruiter{
             }
             i++;
         }
-        return null;
+        throw new RecruiterNotFoundException(id);
     }
 
     /**
@@ -35,11 +35,11 @@ public class DatabaseRecruiter{
      */
     public static boolean addRecruiter(Recruiter recruiter) {
         RECRUITER_DATABASE.add(recruiter);
-        lastId = RECRUITER_DATABASE.size()-1;
+        lastId = recruiter.getId();
         return true;
     }
 
-    public static boolean removeRecruiter(int id) {
+    public static boolean removeRecruiter(int id) throws RecruiterNotFoundException {
         int i=0;
         while(i < RECRUITER_DATABASE.size()) {
             if (RECRUITER_DATABASE.get(i).getId() == id) {
@@ -48,6 +48,6 @@ public class DatabaseRecruiter{
             }
             i++;
         }
-        return false;
+        throw new RecruiterNotFoundException(id);
     }
 }

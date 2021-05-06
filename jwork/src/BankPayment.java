@@ -39,9 +39,14 @@ public class BankPayment extends Invoice{
 
     public String toString() {
         SimpleDateFormat dateFormat = new SimpleDateFormat ("dd MMMM yyyy");
+        String allJobs = null;
         dateFormat.setTimeZone(getDate().getTimeZone());
+        for (Job jobs : super.getJobs()) {
+            allJobs = allJobs + jobs.getName();
+        }
+
         return "Id= " + getId() + 
-//        "\nJob= " + getJobs().getCategory() +
+        "\nJob= " + allJobs +
         "\nDate= " + dateFormat.format(getDate().getTime()) + 
         "\nJob Seeker= " + getJobseeker().getName() + 
         "\nAdmin Fee= " + adminFee + 

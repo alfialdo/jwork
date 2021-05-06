@@ -93,7 +93,8 @@ public class Bonus {
     }
 
     public String toString (){
-        return "Id= " + id + 
+        return "=======Bonus=======\n" +
+         "Id= " + id +
         "\nReferral Code= " + referralCode + 
         "\nExtra Fee= " + extraFee + 
         "\nMin Total Fee= " + minTotalFee + 

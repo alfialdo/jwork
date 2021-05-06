@@ -19,7 +19,7 @@ public class DatabaseJob {
         return lastId;
     }
 
-    public static Job getJobById(int id) {
+    public static Job getJobById(int id) throws JobNotFoundException {
         int i=0;
         while(i < JOB_DATABASE.size()) {
             if (JOB_DATABASE.get(i).getId() == id) {
@@ -27,7 +27,7 @@ public class DatabaseJob {
             }
             i++;
         }
-        return null;
+        throw new JobNotFoundException(id);
     }
 
     public static ArrayList<Job> getJobByRecruiter(int recruiterId) {
@@ -59,11 +59,11 @@ public class DatabaseJob {
 
     public static boolean addJob(Job job) {
         JOB_DATABASE.add(job);
-        lastId = JOB_DATABASE.size()-1;
+        lastId = job.getId();
         return true;
     }
 
-    public static boolean removeJob(int id) {
+    public static boolean removeJob(int id) throws JobNotFoundException {
         int i=0;
         while(i < JOB_DATABASE.size()) {
             if (JOB_DATABASE.get(i).getId() == id) {
@@ -72,6 +72,6 @@ public class DatabaseJob {
             }
             i++;
         }
-        return false;
+        throw new JobNotFoundException(id);
     }
 }

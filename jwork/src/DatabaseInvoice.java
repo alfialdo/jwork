@@ -39,7 +39,7 @@ public class DatabaseInvoice {
     public static boolean addInvoice(Invoice invoice) {
         if (invoice.getInvoiceStatus() != InvoiceStatus.Ongoing) {
             INVOICE_DATABASE.add(invoice);
-            lastId = INVOICE_DATABASE.size()-1;
+            lastId = invoice.getId();
             return true;
         }
         else {
