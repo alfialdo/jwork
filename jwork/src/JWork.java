@@ -54,6 +54,7 @@ public class JWork
         }
 
         try {
+            DatabaseBonus.addBonus()
             DatabaseBonus.getBonusById(100);
         } catch (BonusNotFoundException e) {
             System.out.println(e.getMessage());
@@ -66,12 +67,15 @@ public class JWork
         }
 
         try {
-            DatabaseInvoice.addInvoice(new EwalletPayment(DatabaseInvoice.getLastId()+1, DatabaseJob.getJobDatabase(), DatabaseJobseeker.getJobseekerById(1), InvoiceStatus.Finished, DatabaseBonus.getBonusById(1)));
-            DatabaseInvoice.addInvoice(new EwalletPayment(DatabaseInvoice.getLastId()+1, DatabaseJob.getJobDatabase(), DatabaseJobseeker.getJobseekerById(1), InvoiceStatus.Cancelled, DatabaseBonus.getBonusById(1)));
-            DatabaseInvoice.addInvoice(new EwalletPayment(DatabaseInvoice.getLastId()+1, DatabaseJob.getJobDatabase(), DatabaseJobseeker.getJobseekerById(1), InvoiceStatus.Finished, DatabaseBonus.getBonusById(1)));
-        } catch (JobSeekerNotFoundException e) {
+            DatabaseInvoice.addInvoice(new EwalletPayment(DatabaseInvoice.getLastId() + 1, DatabaseJob.getJobDatabase(), DatabaseJobseeker.getJobseekerById(1), DatabaseBonus.getBonusById(1)));
+            DatabaseInvoice.addInvoice(new BankPayment(DatabaseInvoice.getLastId() + 1, DatabaseJob.getJobDatabase(), DatabaseJobseeker.getJobseekerById(2), 3000));
+            DatabaseInvoice.addInvoice(new EwalletPayment(DatabaseInvoice.getLastId() + 1, DatabaseJob.getJobDatabase(), DatabaseJobseeker.getJobseekerById(3), DatabaseBonus.getBonusById(1)));
+            DatabaseInvoice.addInvoice(new EwalletPayment(DatabaseInvoice.getLastId() + 1, DatabaseJob.getJobDatabase(), DatabaseJobseeker.getJobseekerById(3), DatabaseBonus.getBonusById(1)));
+        }catch (BonusNotFoundException e) {
             System.out.println(e.getMessage());
-        } catch (BonusNotFoundException e) {
+        }catch (JobSeekerNotFoundException e) {
+            System.out.println(e.getMessage());
+        } catch (OngoingInvoiceAlreadyExistsException e) {
             System.out.println(e.getMessage());
         }
 
