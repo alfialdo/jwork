@@ -78,7 +78,7 @@ public class JWork
         } catch (OngoingInvoiceAlreadyExistsException e) {
             System.out.println(e.getMessage());
         }
-
+//
         for(Invoice invoices : DatabaseInvoice.getInvoiceDatabase()) {
             Thread thread = new Thread(new FeeCalculator(invoices));
             thread.start();
