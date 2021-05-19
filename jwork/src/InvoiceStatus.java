@@ -8,7 +8,7 @@ public enum InvoiceStatus {
     Finished("Finished"),
     Cancelled("Cancelled");
 
-    private String invoiceStatus;
+    private final String invoiceStatus;
 
     InvoiceStatus (String invoiceStatus) {
         this.invoiceStatus = invoiceStatus;

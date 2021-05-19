@@ -19,24 +19,22 @@ public class DatabaseBonus {
     }
 
     public static Bonus getBonusById(int id) throws BonusNotFoundException {
-        int i=0;
-        while(i < BONUS_DATABASE.size()) {
-            if (BONUS_DATABASE.get(i).getId() == id) {
-                return BONUS_DATABASE.get(i);
+        for(Bonus bonus : BONUS_DATABASE) {
+            if (bonus.getId() == id) {
+                return bonus;
             }
-            i++;
         }
+
         throw new BonusNotFoundException(id);
     }
 
     public static Bonus getBonusByReferralCode(String referralCode) {
-        int i=0;
-        while(i < BONUS_DATABASE.size()) {
-            if (BONUS_DATABASE.get(i).getReferralCode() == referralCode) {
-                return BONUS_DATABASE.get(i);
+        for(Bonus bonus : BONUS_DATABASE) {
+            if (bonus.getReferralCode().equals(referralCode)) {
+                return bonus;
             }
-            i++;
         }
+
         return null;
     }
 
@@ -45,7 +43,7 @@ public class DatabaseBonus {
      */
     public static boolean addBonus(Bonus bonus) throws ReferralCodeAlreadyExistsException {
         for(Bonus bonuses : BONUS_DATABASE) {
-            if(bonuses.getReferralCode() == bonus.getReferralCode()) {
+            if(bonuses.getReferralCode().equals(bonus.getReferralCode())) {
                 throw new ReferralCodeAlreadyExistsException(bonus);
             }
         }
@@ -56,37 +54,33 @@ public class DatabaseBonus {
     }
 
     public static boolean activeBonus(int id) {
-        int i=0;
-        while(i < BONUS_DATABASE.size()) {
-            if (BONUS_DATABASE.get(i).getId() == id) {
-                BONUS_DATABASE.get(i).setActive(true);
+        for(Bonus bonuses :BONUS_DATABASE) {
+            if (bonuses.getId() == id) {
+                bonuses.setActive(true);
                 return true;
             }
-            i++;
         }
+
         return false;
     }
 
     public static boolean deactiveBonus(int id) {
-        int i=0;
-        while(i < BONUS_DATABASE.size()) {
-            if (BONUS_DATABASE.get(i).getId() == id) {
-                BONUS_DATABASE.get(i).setActive(false);
+
+        for(Bonus bonuses : BONUS_DATABASE) {
+            if (bonuses.getId() == id) {
+                bonuses.setActive(false);
                 return true;
             }
-            i++;
         }
         return false;
     }
 
     public static boolean removeBonus(int id) throws BonusNotFoundException {
-        int i=0;
-        while(i < BONUS_DATABASE.size()) {
-            if (BONUS_DATABASE.get(i).getId() == id) {
-                BONUS_DATABASE.remove(i);
+        for(Bonus bonuses : BONUS_DATABASE) {
+            if (bonuses.getId() == id) {
+                BONUS_DATABASE.remove(id);
                 return true;
             }
-            i++;
         }
         throw new BonusNotFoundException(id);
     }

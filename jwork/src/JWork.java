@@ -11,7 +11,7 @@ public class JWork
         Calendar calendar = new GregorianCalendar();
         Location location1 = new Location("DKI Jakarta", "Jakarta Pusat", "Rumah Sakit");
 
-        DatabaseRecruiter.addRecruiter(new Recruiter(DatabaseRecruiter.getLastId()+1, "Muhammad Alfi A", "lalay   mantap@gmail.com", "08218832277", location1));
+        DatabaseRecruiter.addRecruiter(new Recruiter(DatabaseRecruiter.getLastId()+1, "Muhammad Alfi A", "mantap@gmail.com", "08218832277", location1));
 
         try {
             DatabaseJobseeker.addJobseeker(new Jobseeker(DatabaseJobseeker.getLastId()+1, "Aplha", "mantap@gmail.com", "122a234", calendar));
@@ -54,7 +54,6 @@ public class JWork
         }
 
         try {
-            DatabaseBonus.addBonus()
             DatabaseBonus.getBonusById(100);
         } catch (BonusNotFoundException e) {
             System.out.println(e.getMessage());
@@ -66,11 +65,12 @@ public class JWork
             System.out.println(bonuses.toString());
         }
 
+
         try {
-            DatabaseInvoice.addInvoice(new EwalletPayment(DatabaseInvoice.getLastId() + 1, DatabaseJob.getJobDatabase(), DatabaseJobseeker.getJobseekerById(1), DatabaseBonus.getBonusById(1)));
-            DatabaseInvoice.addInvoice(new BankPayment(DatabaseInvoice.getLastId() + 1, DatabaseJob.getJobDatabase(), DatabaseJobseeker.getJobseekerById(2), 3000));
-            DatabaseInvoice.addInvoice(new EwalletPayment(DatabaseInvoice.getLastId() + 1, DatabaseJob.getJobDatabase(), DatabaseJobseeker.getJobseekerById(3), DatabaseBonus.getBonusById(1)));
-            DatabaseInvoice.addInvoice(new EwalletPayment(DatabaseInvoice.getLastId() + 1, DatabaseJob.getJobDatabase(), DatabaseJobseeker.getJobseekerById(3), DatabaseBonus.getBonusById(1)));
+            DatabaseInvoice.addInvoice(new EwalletPayment(DatabaseInvoice.getLastId() + 1, DatabaseJob.getJobDatabase(), DatabaseJobseeker.getJobseekerById(1),InvoiceStatus.Ongoing , DatabaseBonus.getBonusById(1)));
+            DatabaseInvoice.addInvoice(new BankPayment(DatabaseInvoice.getLastId() + 1, DatabaseJob.getJobDatabase(), DatabaseJobseeker.getJobseekerById(2), InvoiceStatus.Ongoing, 3000));
+            DatabaseInvoice.addInvoice(new EwalletPayment(DatabaseInvoice.getLastId() + 1, DatabaseJob.getJobDatabase(), DatabaseJobseeker.getJobseekerById(3), InvoiceStatus.Ongoing, DatabaseBonus.getBonusById(1)));
+            DatabaseInvoice.addInvoice(new EwalletPayment(DatabaseInvoice.getLastId() + 1, DatabaseJob.getJobDatabase(), DatabaseJobseeker.getJobseekerById(3), InvoiceStatus.Ongoing, DatabaseBonus.getBonusById(1)));
         }catch (BonusNotFoundException e) {
             System.out.println(e.getMessage());
         }catch (JobSeekerNotFoundException e) {
@@ -78,10 +78,10 @@ public class JWork
         } catch (OngoingInvoiceAlreadyExistsException e) {
             System.out.println(e.getMessage());
         }
-//
+
         for(Invoice invoices : DatabaseInvoice.getInvoiceDatabase()) {
-            Thread thread = new Thread(new FeeCalculator(invoices));
-            thread.start();
+            new Thread(new FeeCalculator(invoices)).start();
+
         }
 
 
@@ -90,10 +90,6 @@ public class JWork
 //        Invoice invoice1 = new Invoice(1, job1.getId(), job1.getFee(), "27/3/2021", jobseeker1, InvoiceStatus.Finished);
 //        EwalletPayment ewallet1 = new EwalletPayment(1, job1, jobseeker1, InvoiceStatus.Finished);
 //        BankPayment bank1 = new BankPayment(2, job1, jobseeker1, InvoiceStatus.Cancelled, 5000);
-        
-
-//
-
 
 
 

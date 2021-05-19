@@ -19,12 +19,11 @@ public class DatabaseJobseeker{
     }
 
     public static Jobseeker getJobseekerById(int id) throws JobSeekerNotFoundException {
-        int i=0;
-        while(i < JOBSEEKER_DATABASE.size()) {
-            if (JOBSEEKER_DATABASE.get(i).getId() == id) {
-                return JOBSEEKER_DATABASE.get(i);
+
+        for(Jobseeker jobseekers : JOBSEEKER_DATABASE) {
+            if (jobseekers.getId() == id) {
+                return jobseekers;
             }
-            i++;
         }
         throw new JobSeekerNotFoundException(id);
     }
@@ -45,13 +44,11 @@ public class DatabaseJobseeker{
     }
 
     public static boolean removeJobseeker(int id) throws JobSeekerNotFoundException {
-        int i=0;
-        while(i < JOBSEEKER_DATABASE.size()) {
-            if (JOBSEEKER_DATABASE.get(i).getId() == id) {
-                JOBSEEKER_DATABASE.remove(i);
+        for(Jobseeker jobseekers : JOBSEEKER_DATABASE) {
+            if (jobseekers.getId() == id) {
+                JOBSEEKER_DATABASE.remove(id);
                 return true;
             }
-            i++;
         }
 
         throw new JobSeekerNotFoundException(id);

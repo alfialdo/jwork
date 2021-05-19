@@ -20,39 +20,34 @@ public class DatabaseJob {
     }
 
     public static Job getJobById(int id) throws JobNotFoundException {
-        int i=0;
-        while(i < JOB_DATABASE.size()) {
-            if (JOB_DATABASE.get(i).getId() == id) {
-                return JOB_DATABASE.get(i);
+        for(Job jobs : JOB_DATABASE) {
+            if (jobs.getId() == id) {
+                return jobs;
             }
-            i++;
         }
         throw new JobNotFoundException(id);
     }
 
     public static ArrayList<Job> getJobByRecruiter(int recruiterId) {
-        int i=0;
         ArrayList<Job> tempJob = new ArrayList<>();
-        while(i < JOB_DATABASE.size()) {
-            if (JOB_DATABASE.get(i).getRecuiter().getId() == recruiterId) {
-                tempJob.add(JOB_DATABASE.get(i));
+        for(Job jobs : JOB_DATABASE) {
+            if (jobs.getRecuiter().getId() == recruiterId) {
+                tempJob.add(jobs);
                 return tempJob;
             }
-            i++;
         }
         return null;
     }
 
 
     public static ArrayList<Job> getJobByCategory(JobCategory jobCategory) {
-        int i=0;
+
         ArrayList<Job> tempJob = new ArrayList<>();
-        while(i < JOB_DATABASE.size()) {
-            if (JOB_DATABASE.get(i).getCategory() == jobCategory) {
-                tempJob.add(JOB_DATABASE.get(i));
+        for(Job jobs : JOB_DATABASE) {
+            if (jobs.getCategory() == jobCategory) {
+                tempJob.add(jobs);
                 return tempJob;
             }
-            i++;
         }
         return null;
     }
@@ -64,13 +59,11 @@ public class DatabaseJob {
     }
 
     public static boolean removeJob(int id) throws JobNotFoundException {
-        int i=0;
-        while(i < JOB_DATABASE.size()) {
-            if (JOB_DATABASE.get(i).getId() == id) {
-                JOB_DATABASE.remove(i);
+        for(Job jobs : JOB_DATABASE) {
+            if (jobs.getId() == id) {
+                JOB_DATABASE.remove(id);
                 return true;
             }
-            i++;
         }
         throw new JobNotFoundException(id);
     }

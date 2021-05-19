@@ -2,7 +2,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class BankPayment extends Invoice{
-    private static PaymentType PAYMENT_TYPE = PaymentType.BankPayment;
+    private final static PaymentType PAYMENT_TYPE = PaymentType.BankPayment;
     private int adminFee = 0;
 
     public BankPayment(int id, ArrayList<Job> jobs, Jobseeker jobseeker, InvoiceStatus invoiceStatus) {
@@ -29,20 +29,21 @@ public class BankPayment extends Invoice{
     
     @Override
     public void setTotalFee() {
+        for(Job jobs : super.getJobs())
         if(adminFee != 0) {
-//            super.totalFee = getJobs().getFee() - adminFee;
+            super.totalFee = jobs.getFee() - adminFee;
         }
         else {
-//            super.totalFee = getJobs().getFee();
+            super.totalFee = jobs.getFee();
         }
     }
 
     public String toString() {
         SimpleDateFormat dateFormat = new SimpleDateFormat ("dd MMMM yyyy");
-        String allJobs = null;
+        StringBuilder allJobs = null;
         dateFormat.setTimeZone(getDate().getTimeZone());
         for (Job jobs : super.getJobs()) {
-            allJobs = allJobs + jobs.getName();
+            allJobs.append(jobs.getName());
         }
 
         return "Id= " + getId() + 

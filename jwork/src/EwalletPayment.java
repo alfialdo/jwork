@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * @version Modul 4 - 30 March 2021
  */
 public class EwalletPayment extends Invoice {
-    private static PaymentType PAYMENT_TYPE = PaymentType.EwalletPayment;
+    private final static PaymentType PAYMENT_TYPE = PaymentType.EwalletPayment;
     private Bonus bonus;
 
     public EwalletPayment(int id, ArrayList<Job> jobs, Jobseeker jobseeker, InvoiceStatus invoiceStatus) {
@@ -44,20 +44,23 @@ public class EwalletPayment extends Invoice {
     
 
     public void setTotalFee() {
-        if(bonus != null && bonus.getActive() && totalFee > bonus.getMinTotalFee()) {
-//            super.totalFee = getJob().getFee() + bonus.getExtraFee();
+        for(Job job : super.getJobs()) {
+            if(bonus != null && bonus.getActive() && totalFee > bonus.getMinTotalFee()) {
+                super.totalFee = job.getFee() + bonus.getExtraFee();
+            }
+            else {
+                System.out.println(totalFee);
+                super.totalFee = job.getFee();
+            }
         }
-        else {
-            System.out.println(totalFee);
-//            super.totalFee = getJob().getFee();
-        }
+
     }
     public String toString() {
         SimpleDateFormat dateFormat = new SimpleDateFormat ("dd MMMM yyyy");
         dateFormat.setTimeZone(getDate().getTimeZone());
-        String allJobs = null;
+        StringBuilder allJobs = null;
         for (Job jobs : super.getJobs()) {
-            allJobs = allJobs + jobs.getName();
+            allJobs.append(jobs.getName());
         }
         if(bonus != null && bonus.getActive() && getTotalFee() > bonus.getMinTotalFee()) {
             return "Id= " + getId() + 

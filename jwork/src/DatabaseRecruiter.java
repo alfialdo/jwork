@@ -20,12 +20,10 @@ public class DatabaseRecruiter{
     }
 
     public static Recruiter getRecruiterById(int id) throws RecruiterNotFoundException {
-        int i=0;
-        while(i < RECRUITER_DATABASE.size()) {
-            if (RECRUITER_DATABASE.get(i).getId() == id) {
-                return RECRUITER_DATABASE.get(i);
+        for(Recruiter recruiters : RECRUITER_DATABASE) {
+            if (recruiters.getId() == id) {
+                return recruiters;
             }
-            i++;
         }
         throw new RecruiterNotFoundException(id);
     }
@@ -40,13 +38,11 @@ public class DatabaseRecruiter{
     }
 
     public static boolean removeRecruiter(int id) throws RecruiterNotFoundException {
-        int i=0;
-        while(i < RECRUITER_DATABASE.size()) {
-            if (RECRUITER_DATABASE.get(i).getId() == id) {
-                RECRUITER_DATABASE.remove(i);
+        for(Recruiter recruiters : RECRUITER_DATABASE) {
+            if (recruiters.getId() == id) {
+                RECRUITER_DATABASE.remove(id);
                 return true;
             }
-            i++;
         }
         throw new RecruiterNotFoundException(id);
     }
