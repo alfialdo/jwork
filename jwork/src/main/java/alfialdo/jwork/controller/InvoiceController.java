@@ -63,15 +63,32 @@ public class InvoiceController {
         return false;
     }
 
-//    @RequestMapping(value = "createBankPayment", method = RequestMethod.POST)
-//    public Invoice addBankPayment(@RequestParam(value = "jobIdList") ArrayList<int> jobIdList,
-//                                  @RequestParam(value = "jobseekerId") int jobseekerId,
-//                                  @RequestParam(value = "adminFee") int adminFee) {
-//
-////        Invoice invoice = null;
-////        invoice
-////        DatabaseInvoice.addInvoice();
-//
-//
-//    }
+    @RequestMapping(value = "createBankPayment", method = RequestMethod.POST)
+    public Invoice addBankPayment(@RequestParam(value = "jobIdList") ArrayList<Integer> jobIdList,
+                                  @RequestParam(value = "jobseekerId") int jobseekerId,
+                                  @RequestParam(value = "adminFee") int adminFee) {
+
+        BankPayment bankPayment = null;
+        ArrayList<Job> jobs = null;
+
+        for(int jobId : jobIdList) {
+            try {
+                jobs.add(DatabaseJob.getJobById(jobId));
+            } catch (JobNotFoundException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        try {
+            bankPayment = new BankPayment(DatabaseInvoice.getLastId()+1, jobs, DatabaseJobseeker.getJobseekerById(jobseekerId), InvoiceStatus.Ongoing);
+            DatabaseInvoice.addInvoice(bankPayment);
+        } catch (JobSeekerNotFoundException e) {
+            System.out.println(e.getMessage());
+        } catch (OngoingInvoiceAlreadyExistsException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return bankPayment;
+
+    }
 }
