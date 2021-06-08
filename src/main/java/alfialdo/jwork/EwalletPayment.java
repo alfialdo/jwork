@@ -12,11 +12,11 @@ public class EwalletPayment extends Invoice {
     private final static PaymentType PAYMENT_TYPE = PaymentType.EwalletPayment;
     private Bonus bonus;
 
-    public EwalletPayment(int id, ArrayList<Job> jobs, Jobseeker jobseeker, InvoiceStatus invoiceStatus) {
+    public EwalletPayment(int id, ArrayList<Job> jobs, Jobseeker jobseeker) {
         super(id, jobs, jobseeker);
     }
 
-    public EwalletPayment(int id, ArrayList<Job> jobs, Jobseeker jobseeker, InvoiceStatus invoiceStatus, Bonus bonus) {
+    public EwalletPayment(int id, ArrayList<Job> jobs, Jobseeker jobseeker, Bonus bonus) {
         super(id, jobs, jobseeker);
         this.bonus = bonus;
     }
@@ -47,7 +47,7 @@ public class EwalletPayment extends Invoice {
 
     public void setTotalFee() {
         for(Job job : super.getJobs()) {
-            if(bonus != null && bonus.getActive() && totalFee > bonus.getMinTotalFee()) {
+            if(bonus != null && bonus.getActive() && job.getFee() > bonus.getMinTotalFee()) {
                 super.totalFee = job.getFee() + bonus.getExtraFee();
             }
             else {

@@ -92,7 +92,7 @@ public class Job
      * Getter untuk object recruiter
      * @return Recruiter
      */
-    public Recruiter getRecuiter() {
+    public Recruiter getRecruiter() {
         return recruiter;
     }
 
@@ -100,8 +100,8 @@ public class Job
     /** 
      * Setter untuk object recruiter
      */
-    public void setRecuiter(Recruiter recuiter) {
-        this.recruiter = recuiter;
+    public void setRecruiter(Recruiter recruiter) {
+        this.recruiter = recruiter;
     }
 
     /**

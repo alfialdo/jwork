@@ -32,7 +32,7 @@ public class DatabaseJob {
     public static ArrayList<Job> getJobByRecruiter(int recruiterId) {
         ArrayList<Job> tempJob = new ArrayList<>();
         for(Job jobs : JOB_DATABASE) {
-            if (jobs.getRecuiter().getId() == recruiterId) {
+            if (jobs.getRecruiter().getId() == recruiterId) {
                 tempJob.add(jobs);
                 return tempJob;
             }

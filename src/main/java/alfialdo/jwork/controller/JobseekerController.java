@@ -1,24 +1,27 @@
 package alfialdo.jwork.controller;
 
 import alfialdo.jwork.*;
+import alfialdo.jwork.database.DatabaseJobseekerPostgre;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 
 @RequestMapping("/jobseeker")
 @RestController
 public class JobseekerController {
 
     @RequestMapping("")
-    public String indexPage(@RequestParam(value="name", defaultValue="world") String name) {
-        return "Hello " + name;
+    public ArrayList<Jobseeker> getAllJobseeker() {
+        return DatabaseJobseekerPostgre.getJobseekerDatabase();
     }
 
     @RequestMapping("/{id}")
     public Jobseeker getJobseekerById(@PathVariable int id) {
         Jobseeker jobseeker = null;
         try {
-            jobseeker = DatabaseJobseeker.getJobseekerById(id);
-        } catch (JobSeekerNotFoundException e) {
-            e.getMessage();
+            jobseeker = DatabaseJobseekerPostgre.getJobseekerById(id);
+        } catch (JobseekerNotFoundException e) {
+            System.out.println(e.getMessage());
             return null;
         }
         return jobseeker;
@@ -26,14 +29,14 @@ public class JobseekerController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public Jobseeker registerJobseeker(@RequestParam(value="name") String name,
-                                  @RequestParam(value="email") String email,
-                                  @RequestParam(value="password") String password)
+                                       @RequestParam(value="email") String email,
+                                       @RequestParam(value="password") String password)
     {
-        Jobseeker jobseeker = new Jobseeker(DatabaseJobseeker.getLastId()+1, name, email, password);
+        Jobseeker jobseeker = new Jobseeker(DatabaseJobseekerPostgre.getLastId() + 1,name, email, password);
         try {
-            DatabaseJobseeker.addJobseeker(jobseeker);
+            DatabaseJobseekerPostgre.addJobseeker(jobseeker);
         } catch (EmailAlreadyExistsException e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
             return null;
         }
         return jobseeker;
@@ -43,7 +46,7 @@ public class JobseekerController {
     public Jobseeker loginJobseeker(@RequestParam(value = "email") String email,
                                     @RequestParam(value = "password") String password)
     {
-        return DatabaseJobseeker.jobseekerLogin(email, password);
+        return DatabaseJobseekerPostgre.jobseekerLogin(email, password);
     }
 
 

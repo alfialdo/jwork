@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
  */
 public class DatabaseJobseeker{
-    private static ArrayList<Jobseeker> JOBSEEKER_DATABASE = new ArrayList<>();
+    private static final ArrayList<Jobseeker> JOBSEEKER_DATABASE = new ArrayList<>();
     private static int lastId = 0;
 
     public static ArrayList<Jobseeker> getJobseekerDatabase() {
@@ -19,22 +19,23 @@ public class DatabaseJobseeker{
         return lastId;
     }
 
-    public static Jobseeker getJobseekerById(int id) throws JobSeekerNotFoundException {
+    public static Jobseeker getJobseekerById(int id) throws JobseekerNotFoundException {
 
         for(Jobseeker jobseekers : JOBSEEKER_DATABASE) {
             if (jobseekers.getId() == id) {
                 return jobseekers;
             }
         }
-        throw new JobSeekerNotFoundException(id);
+        throw new JobseekerNotFoundException(id);
     }
 
     /**
      * @return Boolean
      */
     public static boolean addJobseeker(Jobseeker jobseeker) throws EmailAlreadyExistsException {
+
         for(Jobseeker jobseekers : JOBSEEKER_DATABASE) {
-            if(jobseekers.getEmail() == jobseeker.getEmail()) {
+            if (jobseekers.getEmail().equals(jobseeker.getEmail())) {
                 throw new EmailAlreadyExistsException(jobseeker);
             }
         }
@@ -42,9 +43,10 @@ public class DatabaseJobseeker{
         JOBSEEKER_DATABASE.add(jobseeker);
         lastId = jobseeker.getId();
         return true;
+
     }
 
-    public static boolean removeJobseeker(int id) throws JobSeekerNotFoundException {
+    public static boolean removeJobseeker(int id) throws JobseekerNotFoundException {
         for(Jobseeker jobseekers : JOBSEEKER_DATABASE) {
             if (jobseekers.getId() == id) {
                 JOBSEEKER_DATABASE.remove(id);
@@ -52,7 +54,7 @@ public class DatabaseJobseeker{
             }
         }
 
-        throw new JobSeekerNotFoundException(id);
+        throw new JobseekerNotFoundException(id);
     }
 
     public static Jobseeker jobseekerLogin(String email, String password) {

@@ -4,7 +4,7 @@ public class OngoingInvoiceAlreadyExistsException extends Exception {
     private Invoice invoice_error;
 
     public OngoingInvoiceAlreadyExistsException(Invoice invoice_input) {
-        super("Referral ID: ");
+        super("Jobseeker ID: ");
         this.invoice_error = invoice_input;
     }
 

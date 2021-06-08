@@ -27,32 +27,32 @@ public class DatabaseInvoice {
         for(Invoice invoices : INVOICE_DATABASE) {
             if (invoices.getJobseeker().getId() == jobseekerId) {
                 tempJob.add(invoices);
-                return tempJob;
             }
         }
-        return null;
+        return tempJob;
     }
 
-    public static boolean addInvoice(Invoice invoice) throws OngoingInvoiceAlreadyExistsException {
+    public static Boolean addInvoice(Invoice invoice) throws OngoingInvoiceAlreadyExistsException {
+
         for(Invoice invoices : INVOICE_DATABASE) {
-            if (invoices.getInvoiceStatus() != InvoiceStatus.Ongoing && invoices.getJobseeker().getId() != invoice.getJobseeker().getId()) {
-                INVOICE_DATABASE.add(invoice);
-                lastId = invoice.getId();
-                return true;
+            if (invoices.getInvoiceStatus() == InvoiceStatus.Ongoing && invoices.getJobseeker().getId() == invoice.getJobseeker().getId()) {
+                throw new OngoingInvoiceAlreadyExistsException(invoice);
             }
         }
 
-        throw new OngoingInvoiceAlreadyExistsException(invoice);
+        INVOICE_DATABASE.add(invoice);
+        lastId = invoice.getId();
+        return true;
+
     }
 
     public static boolean changeInvoiceStatus(int id, InvoiceStatus invoiceStatus) {
-        int i=0;
-        while(i < INVOICE_DATABASE.size()) {
-            if (INVOICE_DATABASE.get(i).getId() == id && INVOICE_DATABASE.get(i).getInvoiceStatus() == InvoiceStatus.Ongoing) {
-                INVOICE_DATABASE.get(i).setInvoiceStatus(invoiceStatus);
+
+        for(Invoice invoices : DatabaseInvoice.getInvoiceDatabase()) {
+            if (invoices.getId() == id && invoices.getInvoiceStatus() == InvoiceStatus.Ongoing) {
+                invoices.setInvoiceStatus(invoiceStatus);
                 return true;
             }
-            i++;
         }
         return false;
     }

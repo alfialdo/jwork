@@ -42,6 +42,7 @@ public class Jobseeker
         this.name = name;
         this.email = email;
         this.password = password;
+        this.joinDate = new GregorianCalendar();
         setEmail(email);
         setPassword(password);
     }
@@ -126,7 +127,7 @@ public class Jobseeker
         Matcher m = r.matcher(password);
         if (m.find()) {
             this.password = password;
-            // System.out.println("Password Diterima!");
+//            System.out.println("Password Diterima!");
         }
         else {
             this.password = "";

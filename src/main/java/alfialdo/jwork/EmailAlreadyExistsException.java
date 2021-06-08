@@ -4,7 +4,7 @@ public class EmailAlreadyExistsException extends Exception{
     private Jobseeker jobseeker_error;
 
     public EmailAlreadyExistsException(Jobseeker jobseeker_input) {
-        super("Referral ID: ");
+        super("Email: ");
         this.jobseeker_error = jobseeker_input;
     }
 

@@ -1,9 +1,9 @@
 package alfialdo.jwork;
 
-public class JobSeekerNotFoundException extends Exception {
+public class JobseekerNotFoundException extends Exception {
     private int jobseeker_error;
 
-    public JobSeekerNotFoundException(int jobseeker_input) {
+    public JobseekerNotFoundException(int jobseeker_input) {
         super("Jobseeker ID: ");
         this.jobseeker_error = jobseeker_input;
     }
