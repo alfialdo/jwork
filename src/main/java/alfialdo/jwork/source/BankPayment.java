@@ -1,4 +1,5 @@
-package alfialdo.jwork;
+package alfialdo.jwork.source;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 

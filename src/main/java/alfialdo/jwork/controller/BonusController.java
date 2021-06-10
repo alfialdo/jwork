@@ -1,5 +1,7 @@
 package alfialdo.jwork.controller;
-import alfialdo.jwork.*;
+import alfialdo.jwork.database.DatabaseBonusPostgre;
+import alfialdo.jwork.exception.ReferralCodeAlreadyExistsException;
+import alfialdo.jwork.source.Bonus;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
@@ -9,7 +11,7 @@ public class BonusController {
 
     @RequestMapping("")
     public ArrayList<Bonus> getAllBonus() {
-        return DatabaseBonus.getBonusDatabase();
+        return DatabaseBonusPostgre.getBonusDatabase();
     }
 
     @RequestMapping("/{referralCode}")
@@ -17,7 +19,7 @@ public class BonusController {
         Bonus bonus = null;
 
         try {
-            bonus = DatabaseBonus.getBonusByReferralCode(referralCode);
+            bonus = DatabaseBonusPostgre.getBonusByReferralCode(referralCode);
         } catch (Exception e) {
             System.out.println("Bonus can not be found!");
         }
@@ -34,8 +36,8 @@ public class BonusController {
         Bonus bonus = null;
 
         try {
-            bonus = new Bonus(DatabaseBonus.getLastId()+1, extraFee, minTotalFee, referralCode, active);
-            DatabaseBonus.addBonus(bonus);
+            bonus = new Bonus(DatabaseBonusPostgre.getLastId()+1, extraFee, minTotalFee, referralCode, active);
+            DatabaseBonusPostgre.addBonus(bonus);
         } catch (ReferralCodeAlreadyExistsException e) {
             System.out.println(e.getMessage());
         }

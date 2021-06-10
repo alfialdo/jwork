@@ -1,11 +1,13 @@
-package alfialdo.jwork;
+package alfialdo.jwork.source;
+
+import java.io.Serializable;
 
 /**
  * Class untuk recruiter / data perekrut pekerjaan
  * @author Muhammad ALfi A
  * @version Modul 4 - 30 March 2021
  */
-public class Recruiter
+public class Recruiter implements Serializable
 {
     private int id;
     private String name, email, phoneNumber;

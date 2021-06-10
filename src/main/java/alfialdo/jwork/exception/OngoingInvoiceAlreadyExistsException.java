@@ -1,4 +1,6 @@
-package alfialdo.jwork;
+package alfialdo.jwork.exception;
+
+import alfialdo.jwork.source.Invoice;
 
 public class OngoingInvoiceAlreadyExistsException extends Exception {
     private Invoice invoice_error;

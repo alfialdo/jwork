@@ -1,11 +1,14 @@
-package alfialdo.jwork;
+package alfialdo.jwork.source;
+
+import java.io.Serializable;
+
 /**
  * Class untuk bonus fee
  * @author Muhammad Alfi A
  * @version Modul 4 - 30 March 2021
 
  */
-public class Bonus {
+public class Bonus implements Serializable {
     private int id, extraFee, minTotalFee;
     private String referralCode;
     private Boolean active;

@@ -1,6 +1,8 @@
-package alfialdo.jwork;
+package alfialdo.jwork.deprecated;
+import alfialdo.jwork.source.Recruiter;
+import alfialdo.jwork.exception.RecruiterNotFoundException;
+
 import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  * Class untuk database bonus
@@ -8,6 +10,8 @@ import java.util.Iterator;
  * @version Modul 4 - 30 March 2021
 
  */
+
+@Deprecated
 public class DatabaseRecruiter{
     private static ArrayList<Recruiter> RECRUITER_DATABASE = new ArrayList<>();
     private static int lastId = 0;

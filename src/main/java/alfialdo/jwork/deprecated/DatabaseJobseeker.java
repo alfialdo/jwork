@@ -1,4 +1,8 @@
-package alfialdo.jwork;
+package alfialdo.jwork.deprecated;
+import alfialdo.jwork.source.Jobseeker;
+import alfialdo.jwork.exception.EmailAlreadyExistsException;
+import alfialdo.jwork.exception.JobseekerNotFoundException;
+
 import java.util.ArrayList;
 
 /**
@@ -7,6 +11,8 @@ import java.util.ArrayList;
  * @version Modul 4 - 30 March 2021
 
  */
+
+@Deprecated
 public class DatabaseJobseeker{
     private static final ArrayList<Jobseeker> JOBSEEKER_DATABASE = new ArrayList<>();
     private static int lastId = 0;

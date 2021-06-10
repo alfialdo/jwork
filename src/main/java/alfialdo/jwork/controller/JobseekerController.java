@@ -1,7 +1,9 @@
 package alfialdo.jwork.controller;
 
-import alfialdo.jwork.*;
 import alfialdo.jwork.database.DatabaseJobseekerPostgre;
+import alfialdo.jwork.exception.EmailAlreadyExistsException;
+import alfialdo.jwork.exception.JobseekerNotFoundException;
+import alfialdo.jwork.source.Jobseeker;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;

@@ -1,4 +1,6 @@
-package alfialdo.jwork;
+package alfialdo.jwork.source;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -9,7 +11,7 @@ import java.util.GregorianCalendar;
  * @version Modul 4 - 30 March 2021
 
  */
-public abstract class Invoice
+public abstract class Invoice implements Serializable
 {
     private int id;
     protected int totalFee;

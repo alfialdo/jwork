@@ -1,4 +1,4 @@
-package alfialdo.jwork;
+package alfialdo.jwork.exception;
 
 public class JobNotFoundException extends Exception {
     private int job_error;

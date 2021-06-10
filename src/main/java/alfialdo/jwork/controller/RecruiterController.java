@@ -1,5 +1,8 @@
 package alfialdo.jwork.controller;
-import alfialdo.jwork.*;
+import alfialdo.jwork.database.DatabaseRecruiterPostgre;
+import alfialdo.jwork.exception.RecruiterNotFoundException;
+import alfialdo.jwork.source.Location;
+import alfialdo.jwork.source.Recruiter;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
@@ -9,7 +12,7 @@ public class RecruiterController {
 
     @RequestMapping("")
     public ArrayList<Recruiter> getAllRecruiter() {
-        return DatabaseRecruiter.getRecruiterDatabase();
+        return DatabaseRecruiterPostgre.getRecruiterDatabase();
     }
 
     @RequestMapping("/{id}")
@@ -17,7 +20,7 @@ public class RecruiterController {
         Recruiter recruiter = null;
 
         try {
-            recruiter =  DatabaseRecruiter.getRecruiterById(id);
+            recruiter =  DatabaseRecruiterPostgre.getRecruiterById(id);
         } catch (RecruiterNotFoundException e) {
             System.out.println(e.getMessage());
         }
@@ -38,10 +41,10 @@ public class RecruiterController {
 
         try{
             Location loc = new Location(province, city, description);
-            recruiter = new Recruiter(DatabaseRecruiter.getLastId()+1, name, email, phoneNumber, loc);
-            DatabaseRecruiter.addRecruiter(recruiter);
+            recruiter = new Recruiter(DatabaseRecruiterPostgre.getLastId()+1, name, email, phoneNumber, loc);
+            DatabaseRecruiterPostgre.addRecruiter(recruiter);
         } catch (Exception e) {
-            System.out.println("Something wrong!");
+            System.out.println("Cannot add recruiter to database!");
         }
 
         return recruiter;

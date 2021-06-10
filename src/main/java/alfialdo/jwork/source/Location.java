@@ -1,4 +1,4 @@
-package alfialdo.jwork;
+package alfialdo.jwork.source;
 
 /**
  * Class untuk data location

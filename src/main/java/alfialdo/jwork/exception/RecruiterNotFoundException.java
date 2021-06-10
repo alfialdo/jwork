@@ -1,4 +1,4 @@
-package alfialdo.jwork;
+package alfialdo.jwork.exception;
 
 public class RecruiterNotFoundException extends Exception {
     private int recruiter_error;

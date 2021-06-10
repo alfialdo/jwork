@@ -1,4 +1,5 @@
-package alfialdo.jwork;
+package alfialdo.jwork.source;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.regex.Matcher;
@@ -11,7 +12,7 @@ import java.util.GregorianCalendar;
  * @version Modul 4 - 30 March 2021
  */
 
-public class Jobseeker
+public class Jobseeker implements Serializable
 {
     private int id;
     private String name, email, password;

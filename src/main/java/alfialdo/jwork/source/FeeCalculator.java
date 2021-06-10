@@ -1,4 +1,4 @@
-package alfialdo.jwork;
+package alfialdo.jwork.source;
 
 public class FeeCalculator implements Runnable {
     Invoice invoice;

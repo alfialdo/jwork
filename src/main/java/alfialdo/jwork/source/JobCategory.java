@@ -1,4 +1,4 @@
-package alfialdo.jwork;
+package alfialdo.jwork.source;
  /**
  * Class untuk deskripsi job / pekerjaan
  * @author Muhammad Alfi A
@@ -14,7 +14,7 @@ package alfialdo.jwork;
     DataScientist("Data Scientist"),
     DataAnalyst("Data Analyst");
 
-    private String jobCategory;
+    private final String jobCategory;
 
     JobCategory (String jobCategory) {
         this.jobCategory = jobCategory;
@@ -22,7 +22,7 @@ package alfialdo.jwork;
    
     @Override
     public String toString() {
-        return this.jobCategory.toString();
+        return this.jobCategory;
     }
 }
 

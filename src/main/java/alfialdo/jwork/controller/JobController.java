@@ -1,5 +1,11 @@
 package alfialdo.jwork.controller;
-import alfialdo.jwork.*;
+import alfialdo.jwork.database.DatabaseJobPostgre;
+import alfialdo.jwork.database.DatabaseRecruiterPostgre;
+import alfialdo.jwork.deprecated.DatabaseJob;
+import alfialdo.jwork.exception.JobNotFoundException;
+import alfialdo.jwork.exception.RecruiterNotFoundException;
+import alfialdo.jwork.source.Job;
+import alfialdo.jwork.source.JobCategory;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
@@ -9,7 +15,7 @@ public class JobController {
 
     @RequestMapping("")
     public ArrayList<Job> getAllJob() {
-        return DatabaseJob.getJobDatabase();
+        return DatabaseJobPostgre.getJobDatabase();
     }
 
     @RequestMapping("/{id}")
@@ -17,7 +23,7 @@ public class JobController {
         Job job = null;
 
         try {
-            job =  DatabaseJob.getJobById(id);
+            job =  DatabaseJobPostgre.getJobById(id);
         } catch (JobNotFoundException e) {
             System.out.println(e.getMessage());;
         }
@@ -27,14 +33,12 @@ public class JobController {
 
     @RequestMapping("/recruiter/{recruiterId}")
     public ArrayList<Job> getJobByRecruiter(@PathVariable int recruiterId) {
-        ArrayList<Job> jobs = null;
-        jobs = DatabaseJob.getJobByRecruiter(recruiterId);
-        return jobs;
+        return DatabaseJobPostgre.getJobByRecruiter(recruiterId);
     }
 
     @RequestMapping("/category/{category}")
     public ArrayList<Job> getJobByCategory(@PathVariable JobCategory category) {
-        return DatabaseJob.getJobByCategory(category);
+        return DatabaseJobPostgre.getJobByCategory(category);
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
@@ -46,8 +50,8 @@ public class JobController {
         Job job = null;
 
         try {
-            job = new Job(DatabaseJob.getLastId()+1, fee, name, category, DatabaseRecruiter.getRecruiterById(recruiterId));
-            DatabaseJob.addJob(job);
+            job = new Job(DatabaseJob.getLastId()+1, fee, name, category, DatabaseRecruiterPostgre.getRecruiterById(recruiterId));
+            DatabaseJobPostgre.addJob(job);
         } catch (RecruiterNotFoundException e) {
             System.out.println(e.getMessage());
         }

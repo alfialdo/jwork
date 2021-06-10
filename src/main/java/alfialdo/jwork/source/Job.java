@@ -1,10 +1,13 @@
-package alfialdo.jwork;
+package alfialdo.jwork.source;
+
+import java.io.Serializable;
+
 /**
  * Class untuk deskripsi job / pekerjaan
  * @author Muhammad Alfi A
  * @version Modul 4 - 30 March 2021
  */
-public class Job
+public class Job implements Serializable
 {
     private int id, fee;
     private String name;

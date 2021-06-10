@@ -1,5 +1,13 @@
 package alfialdo.jwork.controller;
-import alfialdo.jwork.*;
+import alfialdo.jwork.database.DatabaseBonusPostgre;
+import alfialdo.jwork.database.DatabaseInvoicePostgre;
+import alfialdo.jwork.database.DatabaseJobPostgre;
+import alfialdo.jwork.database.DatabaseJobseekerPostgre;
+import alfialdo.jwork.exception.InvoiceNotFoundException;
+import alfialdo.jwork.exception.JobNotFoundException;
+import alfialdo.jwork.exception.JobseekerNotFoundException;
+import alfialdo.jwork.exception.OngoingInvoiceAlreadyExistsException;
+import alfialdo.jwork.source.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -10,15 +18,15 @@ public class InvoiceController {
 
     @RequestMapping("")
     public ArrayList<Invoice> getAllInvoice() {
-        return DatabaseInvoice.getInvoiceDatabase();
+        return DatabaseInvoicePostgre.getInvoiceDatabase();
     }
 
     @RequestMapping("/{id}")
-    public Invoice getJobById(@PathVariable int id) {
+    public Invoice getInvoiceById(@PathVariable int id) {
         Invoice invoice = null;
 
         try {
-            invoice =  DatabaseInvoice.getInvoiceById(id);
+            invoice =  DatabaseInvoicePostgre.getInvoiceById(id);
         } catch (InvoiceNotFoundException e) {
             System.out.println(e.getMessage());
         }
@@ -27,10 +35,8 @@ public class InvoiceController {
     }
 
     @RequestMapping("/jobseeker/{jobseekerId}")
-    public ArrayList<Invoice> getJobByRecruiter(@PathVariable int jobseekerId) {
-        ArrayList<Invoice> invoices = null;
-        invoices = DatabaseInvoice.getInvoiceByJobseeker(jobseekerId);
-        return invoices;
+    public ArrayList<Invoice> getInvoiceByJobseeker(@PathVariable int jobseekerId) {
+        return DatabaseInvoicePostgre.getInvoiceByJobseeker(jobseekerId);
     }
 
     @RequestMapping(value = "/invoiceStatus/{id}", method = RequestMethod.PUT)
@@ -39,8 +45,8 @@ public class InvoiceController {
         Invoice invoice = null;
 
         try {
-            invoice = DatabaseInvoice.getInvoiceById(id);
-            DatabaseInvoice.changeInvoiceStatus(id, status);
+            invoice = DatabaseInvoicePostgre.getInvoiceById(id);
+            DatabaseInvoicePostgre.changeInvoiceStatus(id, status);
         } catch (InvoiceNotFoundException e) {
             System.out.println(e.getMessage());
         }
@@ -52,7 +58,7 @@ public class InvoiceController {
     public Boolean removeInvoice(@PathVariable int id){
 
         try {
-            DatabaseInvoice.removeInvoice(id);
+            DatabaseInvoicePostgre.removeInvoice(id);
             return true;
         } catch (InvoiceNotFoundException e) {
             System.out.println(e.getMessage());
@@ -66,34 +72,34 @@ public class InvoiceController {
                                   @RequestParam(value = "jobseekerId") int jobseekerId,
                                   @RequestParam(value = "adminFee") int adminFee) {
 
-        BankPayment bankPayment = null;
+        BankPayment bankPayment;
         ArrayList<Job> jobs = new ArrayList<>();
         Jobseeker jobseeker = null;
 
         for(Integer jobId : jobIdList) {
             try {
-                jobs.add(DatabaseJob.getJobById(jobId));
+                jobs.add(DatabaseJobPostgre.getJobById(jobId));
             } catch (JobNotFoundException e) {
                 System.out.println(e.getMessage());
             }
         }
 
         try {
-            jobseeker = DatabaseJobseeker.getJobseekerById(jobseekerId);
+            jobseeker = DatabaseJobseekerPostgre.getJobseekerById(jobseekerId);
         } catch (JobseekerNotFoundException e) {
             System.out.println(e.getMessage());
         }
 
         if(adminFee <= 0) {
-            bankPayment = new BankPayment(DatabaseInvoice.getLastId()+1, jobs, jobseeker);
+            bankPayment = new BankPayment(DatabaseInvoicePostgre.getLastId()+1, jobs, jobseeker);
         }
         else {
-            bankPayment = new BankPayment(DatabaseInvoice.getLastId()+1, jobs, jobseeker, adminFee);
+            bankPayment = new BankPayment(DatabaseInvoicePostgre.getLastId()+1, jobs, jobseeker, adminFee);
         }
 
         try {
             bankPayment.setTotalFee();
-            DatabaseInvoice.addInvoice(bankPayment);
+            DatabaseInvoicePostgre.addInvoice(bankPayment);
         } catch (OngoingInvoiceAlreadyExistsException e) {
             System.out.println(e.getMessage());
             bankPayment = null;
@@ -113,30 +119,30 @@ public class InvoiceController {
 
         for(Integer jobId : jobIdList) {
             try {
-                jobs.add(DatabaseJob.getJobById(jobId));
+                jobs.add(DatabaseJobPostgre.getJobById(jobId));
             } catch (JobNotFoundException e) {
                 System.out.println(e.getMessage());
             }
         }
 
         try {
-            jobseeker = DatabaseJobseeker.getJobseekerById(jobseekerId);
+            jobseeker = DatabaseJobseekerPostgre.getJobseekerById(jobseekerId);
         } catch (JobseekerNotFoundException e) {
             System.out.println(e.getMessage());
         }
 
         if(referralCode.equals("")) {
-            ewalletPayment = new EwalletPayment(DatabaseInvoice.getLastId()+1, jobs, jobseeker);
+            ewalletPayment = new EwalletPayment(DatabaseInvoicePostgre.getLastId()+1, jobs, jobseeker);
             System.out.println("Pass 1");
         }
         else {
-            ewalletPayment = new EwalletPayment(DatabaseInvoice.getLastId()+1, jobs, jobseeker, DatabaseBonus.getBonusByReferralCode(referralCode));
+            ewalletPayment = new EwalletPayment(DatabaseInvoicePostgre.getLastId()+1, jobs, jobseeker, DatabaseBonusPostgre.getBonusByReferralCode(referralCode));
             System.out.println("Pass 2");
         }
 
         try {
             ewalletPayment.setTotalFee();
-            DatabaseInvoice.addInvoice(ewalletPayment);
+            DatabaseInvoicePostgre.addInvoice(ewalletPayment);
         } catch (OngoingInvoiceAlreadyExistsException e) {
             System.out.println(e.getMessage());
             ewalletPayment = null;

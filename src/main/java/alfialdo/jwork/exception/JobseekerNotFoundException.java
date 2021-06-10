@@ -1,4 +1,4 @@
-package alfialdo.jwork;
+package alfialdo.jwork.exception;
 
 public class JobseekerNotFoundException extends Exception {
     private int jobseeker_error;

@@ -1,4 +1,6 @@
-package alfialdo.jwork;
+package alfialdo.jwork.exception;
+
+import alfialdo.jwork.source.Bonus;
 
 public class ReferralCodeAlreadyExistsException extends Exception{
     private Bonus referral_error;

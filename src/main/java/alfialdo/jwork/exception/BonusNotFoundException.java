@@ -1,4 +1,4 @@
-package alfialdo.jwork;
+package alfialdo.jwork.exception;
 
 public class BonusNotFoundException extends Exception{
     private int bonus_error;

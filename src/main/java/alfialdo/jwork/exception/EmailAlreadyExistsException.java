@@ -1,4 +1,6 @@
-package alfialdo.jwork;
+package alfialdo.jwork.exception;
+
+import alfialdo.jwork.source.Jobseeker;
 
 public class EmailAlreadyExistsException extends Exception{
     private Jobseeker jobseeker_error;

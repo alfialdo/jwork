@@ -1,6 +1,9 @@
-package alfialdo.jwork;
+package alfialdo.jwork.deprecated;
+import alfialdo.jwork.source.Job;
+import alfialdo.jwork.source.JobCategory;
+import alfialdo.jwork.exception.JobNotFoundException;
+
 import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  * Class untuk database bonus
@@ -8,6 +11,8 @@ import java.util.Iterator;
  * @version Modul 4 - 30 March 2021
 
  */
+
+@Deprecated
 public class DatabaseJob {
     private static ArrayList<Job> JOB_DATABASE = new ArrayList<>();
     private static int lastId = 0;

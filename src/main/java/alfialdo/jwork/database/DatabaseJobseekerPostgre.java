@@ -1,10 +1,9 @@
 package alfialdo.jwork.database;
 
-import alfialdo.jwork.EmailAlreadyExistsException;
-import alfialdo.jwork.JobseekerNotFoundException;
-import alfialdo.jwork.Jobseeker;
+import alfialdo.jwork.exception.EmailAlreadyExistsException;
+import alfialdo.jwork.exception.JobseekerNotFoundException;
+import alfialdo.jwork.source.Jobseeker;
 
-import javax.xml.transform.Result;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -14,7 +13,7 @@ public class DatabaseJobseekerPostgre {
 
     public static  ArrayList<Jobseeker> getJobseekerDatabase () {
         ArrayList<Jobseeker> jobseekers = new ArrayList<>();
-        String query = "SELECT * FROM jobseeker;";
+        String query = "SELECT * FROM jobseeker";
         Connection conn = DatabaseConnectionPostgre.connection();
 
         try {
@@ -34,7 +33,7 @@ public class DatabaseJobseekerPostgre {
         return jobseekers;
     }
 
-    public static boolean addJobseeker(Jobseeker jobseeker) throws EmailAlreadyExistsException {
+    public static void addJobseeker(Jobseeker jobseeker) throws EmailAlreadyExistsException {
         Connection conn = DatabaseConnectionPostgre.connection();
         PreparedStatement p;
         String query;
@@ -73,7 +72,6 @@ public class DatabaseJobseekerPostgre {
         }
 
         lastId = jobseeker.getId();
-        return true;
     }
 
     public static int getLastId() {
@@ -103,14 +101,13 @@ public class DatabaseJobseekerPostgre {
             ResultSet rs = s.executeQuery(query);
             conn.close();
 
-            if(rs == null) {
-                throw new JobseekerNotFoundException(id);
-            }
-            else {
-                rs.next();
+            if(rs.next()) {
                 jobseeker = new Jobseeker(rs.getInt("id"), rs.getString("name"),
                         rs.getString("email"), rs.getString("password"), rs.getInt("year"),
                         rs.getInt("month"), rs.getInt("day"));
+            }
+            else {
+                throw new JobseekerNotFoundException(id);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();

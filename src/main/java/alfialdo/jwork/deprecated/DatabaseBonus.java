@@ -1,4 +1,8 @@
-package alfialdo.jwork;
+package alfialdo.jwork.deprecated;
+import alfialdo.jwork.source.Bonus;
+import alfialdo.jwork.exception.BonusNotFoundException;
+import alfialdo.jwork.exception.ReferralCodeAlreadyExistsException;
+
 import java.util.ArrayList;
 
 /**
@@ -7,6 +11,8 @@ import java.util.ArrayList;
  * @version Modul 4 - 30 March 2021
 
  */
+
+@Deprecated
 public class DatabaseBonus {
     private static ArrayList<Bonus> BONUS_DATABASE = new ArrayList<>();
     private static int lastId = 0;

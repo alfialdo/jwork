@@ -1,4 +1,4 @@
-package alfialdo.jwork;
+package alfialdo.jwork.exception;
 
 public class InvoiceNotFoundException extends Exception{
     private int invoice_error;

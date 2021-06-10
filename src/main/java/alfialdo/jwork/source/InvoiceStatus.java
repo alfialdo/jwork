@@ -1,4 +1,4 @@
-package alfialdo.jwork;
+package alfialdo.jwork.source;
 /**
  * Enu, untuk Status Invoice
  * @author Muhammad Alfi A
