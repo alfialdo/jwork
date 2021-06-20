@@ -2,7 +2,7 @@ package alfialdo.jwork.source;
 /**
  * Enu, untuk Status Invoice
  * @author Muhammad Alfi A
- * @version Modul 4 - 30 March 2021
+ * @version Final Project - 20 June 2021
  */
 public enum InvoiceStatus {
     Ongoing("Ongoing"),

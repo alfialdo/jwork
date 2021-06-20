@@ -4,6 +4,7 @@ import alfialdo.jwork.database.DatabaseConnectionPostgre;
 import alfialdo.jwork.database.DatabaseJobPostgre;
 import alfialdo.jwork.database.DatabaseJobseekerPostgre;
 import alfialdo.jwork.database.DatabaseRecruiterPostgre;
+import alfialdo.jwork.source.Jobseeker;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -47,6 +48,7 @@ public class JWork
 //        } catch (EmailAlreadyExistsException e) {
 //            System.out.println(e.getMessage());
 //        }
+
 
         SpringApplication.run(JWork.class, args);
 

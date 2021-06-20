@@ -9,12 +9,23 @@ import alfialdo.jwork.exception.ReferralCodeAlreadyExistsException;
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * Class untuk melakukan metode CRUD pada database
+ * Bonus PostgreSQL
+ * @author Muhammad Alfi A
+ * @version Final Project - 20 June 2021
+ */
 public class DatabaseBonusPostgre {
     public static int lastId = 0;
 
+    /**
+     * Method melakukan query seluruh isi Database Bonus yang diurutkan
+     * berdasarkan nama Referral Code
+     * @return Database Bonus
+     */
     public static  ArrayList<Bonus> getBonusDatabase () {
         ArrayList<Bonus> jobseekers = new ArrayList<>();
-        String query = "SELECT * FROM bonus";
+        String query = "SELECT * FROM bonus ORDER BY referral_code";
         Connection conn = DatabaseConnectionPostgre.connection();
 
         try {
@@ -34,6 +45,12 @@ public class DatabaseBonusPostgre {
         return jobseekers;
     }
 
+    /**
+     * Method yang digunakan untuk INSERT data baru ke
+     * Database Bonus
+     * @param bonus
+     * @throws ReferralCodeAlreadyExistsException
+     */
     public static void addBonus(Bonus bonus) throws ReferralCodeAlreadyExistsException {
         Connection conn = DatabaseConnectionPostgre.connection();
         PreparedStatement p;
@@ -73,6 +90,10 @@ public class DatabaseBonusPostgre {
         lastId = bonus.getId();
     }
 
+    /**
+     * Method yang digunakan untuk mendapatkan id terakhir pada database
+     * @return Id terakhir yang ada pada database
+     */
     public static int getLastId() {
         String query = "SELECT id FROM bonus ORDER BY id DESC LIMIT 1";
         Connection conn = DatabaseConnectionPostgre.connection();
@@ -91,6 +112,13 @@ public class DatabaseBonusPostgre {
         return lastId;
     }
 
+    /**
+     * Method yang digunakan untuk query data Bonus
+     * berdasarkan id pada PostgreSQL
+     * @param id
+     * @return
+     * @throws BonusNotFoundException
+     */
     public static Bonus getBonusById(int id) throws BonusNotFoundException {
         Bonus bonus = null;
         String query = "SELECT * FROM bonus WHERE id = " + id;
@@ -117,6 +145,12 @@ public class DatabaseBonusPostgre {
         return bonus;
     }
 
+    /**
+     * Method yang digunakan untuk query data Bonus
+     * pada PostgreSQL berdasarkan referral code
+     * @param referralCode
+     * @return
+     */
     public static Bonus getBonusByReferralCode(String referralCode) {
         Bonus bonus = null;
         String query = "SELECT * FROM bonus WHERE referral_code = ?";
@@ -140,7 +174,14 @@ public class DatabaseBonusPostgre {
         return bonus;
     }
 
-    public static boolean removeJobseeker(int id) throws BonusNotFoundException {
+    /**
+     * Method yang digunakan untuk DELETE data Bonus
+     * pada database PostgreSQL
+     * @param id
+     * @return
+     * @throws BonusNotFoundException
+     */
+    public static boolean removeBonus(int id) throws BonusNotFoundException {
         int row = 0;
         String query = "DELETE FROM bonus where id = " + id;
         Connection conn = DatabaseConnectionPostgre.connection();

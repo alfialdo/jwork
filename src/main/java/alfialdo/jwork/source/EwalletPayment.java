@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * Class untuk ewallet payment - subclass dari Invoice
  * @author Muhammad Alfi A
- * @version Modul 4 - 30 March 2021
+ * @version Final Project - 20 June 2021
  */
 public class EwalletPayment extends Invoice {
     private final static PaymentType PAYMENT_TYPE = PaymentType.EwalletPayment;
@@ -21,7 +21,8 @@ public class EwalletPayment extends Invoice {
         this.bonus = bonus;
     }
     
-    /** 
+    /**
+     * Method getter untuk payment type
      * @return PaymentType
      */
     public PaymentType getPaymentType() {
@@ -29,7 +30,8 @@ public class EwalletPayment extends Invoice {
     }
 
     
-    /** 
+    /**
+     * Method getter untuk object bonus
      * @return Bonus
      */
     public Bonus getBonus() {
@@ -37,14 +39,16 @@ public class EwalletPayment extends Invoice {
     }
 
     
-    /** 
+    /**
+     * Method setter untuk object bonus
      */
     public void setBonus(Bonus bonus) {
         this.bonus = bonus;
     }
 
-    
-
+    /**
+     * Method setter untuk total fee
+     */
     public void setTotalFee() {
         for(Job job : super.getJobs()) {
             if(bonus != null && bonus.getActive() && job.getFee() > bonus.getMinTotalFee()) {
@@ -57,6 +61,12 @@ public class EwalletPayment extends Invoice {
         }
 
     }
+
+    /**
+     * Method untuk mengubah informasi object Ewallet Payment
+     * menjadi String
+     * @return String
+     */
     public String toString() {
         SimpleDateFormat dateFormat = new SimpleDateFormat ("dd MMMM yyyy");
         dateFormat.setTimeZone(getDate().getTimeZone());

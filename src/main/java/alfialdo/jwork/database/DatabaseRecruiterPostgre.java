@@ -1,5 +1,6 @@
 package alfialdo.jwork.database;
 
+import alfialdo.jwork.exception.EmailAlreadyExistsException;
 import alfialdo.jwork.source.Location;
 import alfialdo.jwork.source.Recruiter;
 import alfialdo.jwork.exception.RecruiterNotFoundException;
@@ -7,12 +8,24 @@ import alfialdo.jwork.exception.RecruiterNotFoundException;
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * Class untuk melakukan metode CRUD pada database
+ * Recruiter PostgreSQL
+ * @author Muhammad Alfi A
+ * @version Final Project
+ */
 public class DatabaseRecruiterPostgre {
     public static int lastId = 0;
 
+    /**
+     * Method melakukan query seluruh isi Database Recruiter yang diurutkan
+     * berdasarkan nama Recruiter
+     * @return Databae Recruiter
+     */
     public static  ArrayList<Recruiter> getRecruiterDatabase () {
         ArrayList<Recruiter> recruiters = new ArrayList<>();
-        String query = "SELECT *, (location).province, (location).city, (location).description FROM recruiter";
+        String query = "SELECT *, (location).province, (location).city, (location).description " +
+                "FROM recruiter ORDER BY name";
         Connection conn = DatabaseConnectionPostgre.connection();
 
         try {
@@ -34,10 +47,33 @@ public class DatabaseRecruiterPostgre {
         return recruiters;
     }
 
-    public static void addRecruiter(Recruiter recruiter) {
+    /**
+     * Method yang digunakan untuk INSERT data baru ke
+     * Database Recruiter
+     * @param recruiter
+     * @throws EmailAlreadyExistsException
+     */
+    public static void addRecruiter(Recruiter recruiter) throws EmailAlreadyExistsException {
         Connection conn = DatabaseConnectionPostgre.connection();
         PreparedStatement p;
-        String query = "INSERT INTO recruiter VALUES(?, ?, ?, ?, ROW(?, ?, ?))";
+        String query;
+
+        query = "SELECT * FROM recruiter WHERE email = ?";
+
+        try {
+            p = conn.prepareStatement(query);
+            p.setString(1, recruiter.getEmail());
+            ResultSet rs = p.executeQuery();
+            if(rs.next()) {
+                rs.close();
+                throw new EmailAlreadyExistsException(recruiter.getEmail());
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        query = "INSERT INTO recruiter VALUES(?, ?, ?, ?, ROW(?, ?, ?))";
 
         try {
             p = conn.prepareStatement(query);
@@ -58,6 +94,10 @@ public class DatabaseRecruiterPostgre {
         lastId = recruiter.getId();
     }
 
+    /**
+     * Method yang digunakan untuk mendapatkan id terakhir pada database
+     * @return Id terakhir yang ada pada database
+     */
     public static int getLastId() {
         String query = "SELECT id FROM recruiter ORDER BY id DESC LIMIT 1";
         Connection conn = DatabaseConnectionPostgre.connection();
@@ -77,6 +117,13 @@ public class DatabaseRecruiterPostgre {
         return lastId;
     }
 
+    /**
+     * Method yang digunakan untuk query data Recruiter
+     * berdasarkan id pada PostgreSQL
+     * @param id
+     * @return
+     * @throws RecruiterNotFoundException
+     */
     public static Recruiter getRecruiterById(int id) throws RecruiterNotFoundException {
         Recruiter recruiter = null;
         String query = "SELECT *, (location).province, (location).city, (location).description FROM recruiter WHERE id = " + id;
@@ -104,6 +151,13 @@ public class DatabaseRecruiterPostgre {
         return recruiter;
     }
 
+    /**
+     * Method yang digunakan untuk DELETE data Recruiter
+     * pada database PostgreSQL
+     * @param id
+     * @return
+     * @throws RecruiterNotFoundException
+     */
     public static boolean removeRecruiter(int id) throws RecruiterNotFoundException {
         int row = 0;
         String query = "DELETE FROM recruiter where id = " + id;

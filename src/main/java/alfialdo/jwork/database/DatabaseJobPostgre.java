@@ -9,9 +9,19 @@ import alfialdo.jwork.source.Recruiter;
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * Class untuk melakukan metode CRUD pada database
+ * Job PostgreSQL
+ * @author Muhammad Alfi A
+ * @version Final Project
+ */
 public class DatabaseJobPostgre {
     public static int lastId = 0;
 
+    /**
+     * Method melakukan query seluruh isi Database Job
+     * @return Databae Job
+     */
     public static  ArrayList<Job> getJobDatabase () {
         ArrayList<Job> jobs = new ArrayList<>();
         String query = "SELECT * FROM job";
@@ -37,6 +47,11 @@ public class DatabaseJobPostgre {
         return jobs;
     }
 
+    /**
+     * Method yang digunakan untuk INSERT data baru ke
+     * Database Job
+     * @param job
+     */
     public static void addJob(Job job) {
         Connection conn = DatabaseConnectionPostgre.connection();
         PreparedStatement p;
@@ -59,6 +74,10 @@ public class DatabaseJobPostgre {
         lastId = job.getId();
     }
 
+    /**
+     * Method yang digunakan untuk mendapatkan id terakhir pada database
+     * @return Id terakhir yang ada pada database
+     */
     public static int getLastId() {
         String query = "SELECT id FROM job ORDER BY id DESC LIMIT 1";
         Connection conn = DatabaseConnectionPostgre.connection();
@@ -76,6 +95,13 @@ public class DatabaseJobPostgre {
         return lastId;
     }
 
+    /**
+     * Method yang digunakan untuk query data Job
+     * berdasarkan id pada PostgreSQL
+     * @param id
+     * @return
+     * @throws JobNotFoundException
+     */
     public static Job getJobById(int id) throws JobNotFoundException {
         Job job = null;
         String query = "SELECT * FROM job WHERE id = " + id;
@@ -103,6 +129,12 @@ public class DatabaseJobPostgre {
         return job;
     }
 
+    /**
+     * Method yang digunakan untuk query data Job
+     * pada PostgreSQL berdasarkan Recruiter
+     * @param recruiterId
+     * @return
+     */
     public static ArrayList<Job> getJobByRecruiter(int recruiterId) {
         ArrayList<Job> jobs = new ArrayList<>();
         String query = "SELECT * FROM job WHERE recruiter_id = " + recruiterId;
@@ -130,6 +162,12 @@ public class DatabaseJobPostgre {
         return jobs;
     }
 
+    /**
+     * Method yang digunakan untuk query data Job
+     * pada PostgreSQL berdasarkan category
+     * @param jobCategory
+     * @return
+     */
     public static ArrayList<Job> getJobByCategory(JobCategory jobCategory) {
         ArrayList<Job> jobs = new ArrayList<>();
         String query = "SELECT * FROM job WHERE category = ?::job_category";
@@ -158,6 +196,13 @@ public class DatabaseJobPostgre {
         return jobs;
     }
 
+    /**
+     * Method yang digunakan untuk DELETE data Job
+     * pada database PostgreSQL
+     * @param id
+     * @return
+     * @throws JobNotFoundException
+     */
     public static boolean removeJob(int id) throws JobNotFoundException {
         int row = 0;
         String query = "DELETE FROM job where id = " + id;

@@ -9,15 +9,30 @@ import alfialdo.jwork.source.JobCategory;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
+/**
+ * Controller Job sebagai API penghubung antara aplikasi
+ * dengna database Job PostgreSQL
+ * @author Muhammad Alfi A
+ * @version Final Project - 20 June 2021
+ */
 @RequestMapping("/job")
 @RestController
 public class JobController {
 
+    /**
+     * Method yang digunakan untuk fetch seluruh database Job
+     * @return
+     */
     @RequestMapping("")
     public ArrayList<Job> getAllJob() {
         return DatabaseJobPostgre.getJobDatabase();
     }
 
+    /**
+     * Method yang digunakan untuk fetch data Job berdasarkan id
+     * @param id
+     * @return
+     */
     @RequestMapping("/{id}")
     public Job getJobById(@PathVariable int id) {
         Job job = null;
@@ -31,11 +46,22 @@ public class JobController {
         return job;
     }
 
+    /**
+     * Method yang digunakan untuk fetch data Job berdasarkan
+     * Recruiter tertentu
+     * @param recruiterId
+     * @return
+     */
     @RequestMapping("/recruiter/{recruiterId}")
     public ArrayList<Job> getJobByRecruiter(@PathVariable int recruiterId) {
         return DatabaseJobPostgre.getJobByRecruiter(recruiterId);
     }
 
+    /**
+     * Method yang digunakan untuk fetch data JOb berdasarkan category
+     * @param category
+     * @return
+     */
     @RequestMapping("/category/{category}")
     public ArrayList<Job> getJobByCategory(@PathVariable JobCategory category) {
         return DatabaseJobPostgre.getJobByCategory(category);
@@ -47,15 +73,34 @@ public class JobController {
                             @RequestParam(value = "category") JobCategory category,
                             @RequestParam(value = "recruiterId") int recruiterId) {
 
-        Job job = null;
+        Job job;
 
         try {
-            job = new Job(DatabaseJob.getLastId()+1, fee, name, category, DatabaseRecruiterPostgre.getRecruiterById(recruiterId));
+            job = new Job(DatabaseJobPostgre.getLastId()+1, fee, name, category, DatabaseRecruiterPostgre.getRecruiterById(recruiterId));
             DatabaseJobPostgre.addJob(job);
         } catch (RecruiterNotFoundException e) {
             System.out.println(e.getMessage());
+            job = null;
         }
 
         return job;
+    }
+
+    /**
+     * Method yang digunakan untuk menambahkan Job baru ke database
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public Boolean removeJob(@PathVariable int id){
+
+        try {
+            DatabaseJobPostgre.removeJob(id);
+            return true;
+        } catch (JobNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return false;
     }
 }

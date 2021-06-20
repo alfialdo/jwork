@@ -3,15 +3,15 @@ package alfialdo.jwork.exception;
 import alfialdo.jwork.source.Jobseeker;
 
 public class EmailAlreadyExistsException extends Exception{
-    private Jobseeker jobseeker_error;
+    private String email;
 
-    public EmailAlreadyExistsException(Jobseeker jobseeker_input) {
+    public EmailAlreadyExistsException(String email) {
         super("Email: ");
-        this.jobseeker_error = jobseeker_input;
+        this.email = email;
     }
 
     @Override
     public String getMessage() {
-        return super.getMessage() + jobseeker_error.getEmail() + " already exists";
+        return super.getMessage() + email + " already exists";
     }
 }

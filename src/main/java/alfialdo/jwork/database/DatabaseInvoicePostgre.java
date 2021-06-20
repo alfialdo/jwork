@@ -5,11 +5,20 @@ import alfialdo.jwork.source.*;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Calendar;
 
+/**
+ * Class untuk melakukan metode CRUD pada database
+ * Invoice PostgreSQL
+ * @author Muhammad Alfi A
+ * @version Final Project - 20 June 2021
+ */
 public class DatabaseInvoicePostgre {
     public static int lastId = 0;
 
+    /**
+     * Method melakukan query seluruh isi Database Invoice
+     * @return Databae Invoice
+     */
     public static  ArrayList<Invoice> getInvoiceDatabase () {
         ArrayList<Invoice> invoices = new ArrayList<>();
         String query = "SELECT * FROM invoice";
@@ -60,6 +69,12 @@ public class DatabaseInvoicePostgre {
         return invoices;
     }
 
+    /**
+     * Method yang digunakan untuk INSERT data baru ke
+     * Database Invoice
+     * @param invoice
+     * @throws OngoingInvoiceAlreadyExistsException
+     */
     public static void addInvoice(Invoice invoice) throws OngoingInvoiceAlreadyExistsException {
         Connection conn = DatabaseConnectionPostgre.connection();
         ArrayList<Integer> jobIdList = new ArrayList<>();
@@ -122,6 +137,10 @@ public class DatabaseInvoicePostgre {
         lastId = invoice.getId();
     }
 
+    /**
+     * Method yang digunakan untuk mendapatkan id terakhir pada database
+     * @return Id terakhir yang ada pada database
+     */
     public static int getLastId() {
         String query = "SELECT id FROM invoice ORDER BY id DESC LIMIT 1";
         Connection conn = DatabaseConnectionPostgre.connection();
@@ -140,6 +159,13 @@ public class DatabaseInvoicePostgre {
         return lastId;
     }
 
+    /**
+     * berdasarkan id pada PostgreSQL
+     * Method yang digunakan untuk query data Invoice
+     * @param id
+     * @return Data Invoice
+     * @throws InvoiceNotFoundException
+     */
     public static Invoice getInvoiceById(int id) throws InvoiceNotFoundException {
         Invoice invoice = null;
         String query = "SELECT * FROM invoice WHERE id = " + id;
@@ -257,6 +283,13 @@ public class DatabaseInvoicePostgre {
 
     }
 
+    /**
+     * Method yang digunakan untuk DELETE data Invoice
+     * pada database PostgreSQL
+     * @param id
+     * @return
+     * @throws InvoiceNotFoundException
+     */
     public static boolean removeInvoice(int id) throws InvoiceNotFoundException {
         int row = 0;
         String query = "DELETE FROM invoice where id = " + id;

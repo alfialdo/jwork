@@ -42,7 +42,7 @@ public class DatabaseJobseeker{
 
         for(Jobseeker jobseekers : JOBSEEKER_DATABASE) {
             if (jobseekers.getEmail().equals(jobseeker.getEmail())) {
-                throw new EmailAlreadyExistsException(jobseeker);
+                throw new EmailAlreadyExistsException(jobseeker.getEmail());
             }
         }
 

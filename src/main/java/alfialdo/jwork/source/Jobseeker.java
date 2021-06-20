@@ -1,15 +1,18 @@
 package alfialdo.jwork.source;
+
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.regex.Matcher;
-import java.util.regex.Pattern; 
+import java.util.regex.Pattern;
 import java.util.GregorianCalendar;
 
 /**
- * Class untuk mencari job / pekerjaan
+ * Class jobseeker digunakan untuk membuat object Jobseeker
+ * dengan attribute id, name, password, dan joinDate.
+ *
  * @author Muhammad Alfi A
- * @version Modul 4 - 30 March 2021
+ * @version Final Project - 20 June 2021
  */
 
 public class Jobseeker implements Serializable
@@ -22,30 +25,25 @@ public class Jobseeker implements Serializable
         this.id = id;
         this.name = name;
         this.email = email;
-        this.password = password;
+        this.password = Hash.hashMd5(password);
         this.joinDate = joinDate;
-        setEmail(email);
-        setPassword(password);
     }
     
     public Jobseeker(int id, String name, String email, String password, int year, int month, int dayOfMonth) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.password = password;
+        this.password = Hash.hashMd5(password);
         this.joinDate = new GregorianCalendar(year, month, dayOfMonth);
-        setEmail(email);
-        setPassword(password);
+
     }
 
     public Jobseeker(int id, String name, String email, String password) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.password = password;
+        this.password = Hash.hashMd5(password);
         this.joinDate = new GregorianCalendar();
-        setEmail(email);
-        setPassword(password);
     }
     /** 
      * Getter untuk attribute id
@@ -102,13 +100,9 @@ public class Jobseeker implements Serializable
             this.email = email;
             // System.out.println("Email Diterima!");
         }
-        else {
-            this.email = "";
-            // System.out.println("Email Tidak Sesuai!");
-        }
     }
 
-    
+
     /** 
      * Getter untuk attribute password
      * @return String
@@ -117,8 +111,8 @@ public class Jobseeker implements Serializable
         return password;
     }
 
-    
-    /** 
+
+    /**
      * Setter untuk attribute password
      */
     public void setPassword(String password) {
@@ -128,11 +122,6 @@ public class Jobseeker implements Serializable
         Matcher m = r.matcher(password);
         if (m.find()) {
             this.password = password;
-//            System.out.println("Password Diterima!");
-        }
-        else {
-            this.password = "";
-            // System.out.println("Password Tidak Sesuai!");
         }
     }
 
@@ -158,7 +147,7 @@ public class Jobseeker implements Serializable
     }
     
     /**
-     * Method untuk print data
+     * Method untuk print data dari object Jobseeker
      */
     public String toString (){
         SimpleDateFormat dateFormat = new SimpleDateFormat ("dd MMMM yyyy");
